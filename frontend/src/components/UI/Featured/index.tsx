@@ -7,6 +7,7 @@ import companies_image from '../../../../public/images/companies.png';
 import { Wrapper, Inner, ImageContainer, ParallaxImages, Div } from './styles';
 import RevealCover from '@/components/Common/RevealCover';
 import { useIsMobile } from '../../../../libs/useIsMobile';
+
 export const imageVariants = {
   hidden: {
     scale: 1.6,
@@ -23,6 +24,7 @@ export const imageVariants = {
 
 const Featured = () => {
   const isMobile = useIsMobile();
+  
   return (
     <Wrapper>
       <Inner>
@@ -39,16 +41,26 @@ const Featured = () => {
                 src={featured_mobile_banner}
                 alt="featured_mobile_banner"
                 fill
+                sizes="(max-width: 768px) 100vw, 100vw"
+                priority
               />
             ) : (
-              <Image src={big_banner} alt="big_banner" fill />
+              <Image 
+                src={big_banner} 
+                alt="big_banner" 
+                fill
+                sizes="100vw"
+                priority
+              />
             )}
           </Div>
         </ImageContainer>
-        <h2>Featured and Seen in</h2>
+
+        <h2>Powered by</h2>
+
         <ParallaxImages>
           <ParallaxText baseVelocity={-4}>
-            <Image src={companies_image} alt="comapanies" />
+            <Image src={companies_image} alt="companies" />
           </ParallaxText>
         </ParallaxImages>
       </Inner>
