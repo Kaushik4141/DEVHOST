@@ -1,0 +1,71 @@
+[
+    {
+        "title": "Understanding Motia: A Unified Backend System",
+        "explanation": "Motia is a multi-language, event-driven runtime manager that simplifies backend development by unifying various concerns such as APIs, background jobs, queues, workflows, AI agents, streaming, observability, and state management around a single core primitive called the Step. Motia aims to reduce the complexity of fragmented backend development by providing a simple and consistent way to express all these patterns.",
+        "key_points": [
+            "Motia is built on a core primitive: the Step",
+            "Every backend pattern can be expressed with the same Step primitive",
+            "Motia auto-discovers and connects Steps automatically",
+            "Motia simplifies backend development similar to how React simplified frontend development with components",
+            "Motia aims to unify various backend concerns into one system"
+        ],
+        "example": "The example provided demonstrates two Steps working together: an API Step that emits an event, and an Event Step that processes it.",
+        "related_terms": [
+            "Step",
+            "Backend Development",
+            "APIs",
+            "Background Jobs",
+            "Queues",
+            "Workflows",
+            "AI Agents",
+            "Streaming",
+            "Observability",
+            "State Management"
+        ],
+        "code_snippet": "```javascript\nexport const config = {\n name: 'SendMessage',\n type: 'api',\n path: '/messages',\n method: 'POST',\n emits: ['message.sent']\n};\n\nexport const handler = async(req, {emit}) => {\n await emit({topic:'message.sent', data: { text: req.body.text }});\n return{ status:200, body: { ok:true} };\n};\n\nexport const config = {\n name: 'ProcessMessage',\n type: 'event',\n subscribes: ['message.sent']\n};\n\nexport const handler = async(input, {logger}) => {\n logger.info('Processing message', input);\n};\n```",
+        "original_source_url": "https://www.motia.dev/docs====="
+    },
+    {
+        "title": "Quick Start with Motia",
+        "explanation": "The Quick Start guide provides a step-by-step process to create, set up, and run your first Motia project. It covers creating a new project, starting the development server, running your first workflow, and offers suggestions for further learning.",
+        "key_points": [
+            "Create a new Motia project using npx motia@latest create",
+            "Navigate into the new project directory and start the Motia development server",
+            "The starter project comes with a pre-built basic tutorial flow",
+            "Complete the Tutorial to get an understanding of the basics of Motia and using the Workbench",
+            "Follow the Build Your First Motia App guide to build your first application from scratch"
+        ],
+        "example": "Create a new Motia project: npx motia@latest create. Navigate into the new project directory: cd <your-project-name>. Start the Motia development server: npx motia dev.",
+        "related_terms": [
+            "Motia",
+            "Workbench",
+            "Project",
+            "Development Server",
+            "Tutorial",
+            "Workflow"
+        ],
+        "code_snippet": "```\n\nnpx motia@latest create\ncd <your-project-name>\nnpx motia dev\n```",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/quick-start ====="
+    },
+    {
+        "title": "Build Your First Motia App",
+        "explanation": "In this tutorial, you'll learn to build a complete pet store backend system using Motia. The system will handle API endpoints, background jobs, workflows, AI agents, and real-time streaming. By the end, you'll have a production-ready backend capable of handling simple CRUD operations as well as intelligent, real-time systems.",
+        "key_points": [
+            "Create HTTP endpoints that handle pet operations",
+            "Add async tasks that run without blocking your APIs",
+            "Coordinate complex processes with automatic transitions and validation",
+            "Add intelligent decision-making to your workflows",
+            "Push live updates to clients while your workflows run in the background"
+        ],
+        "example": "The example project is a pet store backend that handles pet management operations such as create, update, and list.",
+        "related_terms": [
+            "API Endpoints",
+            "Background Jobs",
+            "Workflows",
+            "AI Agents",
+            "Real-Time Streaming"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app ====="
+    }
+]

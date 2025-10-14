@@ -1,0 +1,117 @@
+
+
+===== https://www.motia.dev/docs =====
+
+Welcome to Motia
+Motia is a multi-language, event-driven runtime manager built on a core primitive: the Step. It feels like a backend framework, but powers distributed backends for APIs, background jobs, queues, workflows, agents, streaming, state, and observability, all unified in one system.
+Welcome to Motia
+Why Motia?
+Backend development today is fragmented.
+APIs live in one framework, background jobs in another, queues and schedulers elsewhere, and now AI agents and streaming systems have their own runtimes. Add observability and state management on top, and you’re stitching together half a dozen tools before writing your first feature.
+Motia unifies all of these concerns around one core primitive: the Step.
+Just as React made frontend development simple by introducing components, Motia redefines backend development with Steps.
+Every backend pattern, API endpoints, background jobs, queues, workflows, AI agents, streaming, observability, and state, is expressed with the same primitive.
+To read more about this, check out ourmanifesto.
+The Core Primitive: the Step
+At the heart of Motia is a single primitive: theStep.
+A Step is just a file with aconfigand ahandler. Motia auto-discovers these files from/stepsdirectory and connects them automatically.
+config
+handler
+/steps
+Here’s a simple example of two Steps working together: an API Step that emits an event, and an Event Step that processes it.
+exportconstconfig={name:'SendMessage',type:'api',path:'/messages',method:'POST',emits: ['message.sent']};exportconsthandler=async(req, {emit})=>{awaitemit({topic:'message.sent',data: { text: req.body.text }});return{ status:200, body: { ok:true} };};
+exportconstconfig={name:'SendMessage',type:'api',path:'/messages',method:'POST',emits: ['message.sent']};exportconsthandler=async(req, {emit})=>{awaitemit({topic:'message.sent',data: { text: req.body.text }});return{ status:200, body: { ok:true} };};
+exportconstconfig={name:'ProcessMessage',type:'event',subscribes: ['message.sent']};exportconsthandler=async(input, {logger})=>{logger.info('Processing message', input);};
+exportconstconfig={name:'ProcessMessage',type:'event',subscribes: ['message.sent']};exportconsthandler=async(input, {logger})=>{logger.info('Processing message', input);};
+👉 With just two files, you’ve built anAPI endpoint, aqueue, and aworker. No extra frameworks required.
+Learn more about Steps here:What is a Step?.
+Working with multiple Languages
+The rapid advancement of AI has reshaped the software industry—many cutting-edge AI tools are available only in specific programming languages, this forces companies to decide if they either change their team's skillset to a different language or not leveraging these technologies at all.
+Motia removes this limitation by allowing each Step to be written in any language, while still sharing a common state.
+Each rectangle in the diagram above represents a Step, some of them are in TypeScript and others in Python.
+Scalability
+One of the biggest dilemmas in backend development is choosing between scalability and development velocity. In startup environments, speed often takes priority, resulting in systems that don't scale well and become problematic under increased load.
+Motia addresses scalability by leveraging the core primitive ofSteps: Each step can scale independently avoiding the bottlenecks common in monolithic architectures.
+Observability
+Observability in traditional backends often demands significant engineering effort to implement logging, alerting, and tracing. Typically, these tools are only configured for cloud environments, local development is generally neglected—leading to low productivity and poor dev experience.
+Motia offers a complete observability toolkit available in both cloud and local environments, including:
+Logs visualization
+Tracing tool to quickly visualize the flow of requests through the system
+State visualization
+Diagram representation of dependencies between steps and how they are connected
+The image below shows the Workbench interface available when you runmotia dev. On the top panel you can see a workflow diagram with multiple steps connected.
+On the bottom panel you can see the trace view of a single request and what happened in each step.
+motia dev
+Fault tolerance
+With the rise of AI, many backend tasks have become less deterministic and more error-prone. These scenarios require robust error handling and retry mechanisms. In traditional systems, developers often need to set up and maintain queue infrastructures to ensure resilience, especially when dealing with unreliable responses from LLMs.
+Motia provides fault tolerance out of the box, eliminating the need to manually spin up queue infrastructure.
+Using Event Steps, you get retry mechanisms out of the box
+Configuration of queue infrastructure is abstracted away
+Building and Shipping
+Building and deploying backends is inherently complex—especially in polyglot environments. Shipping production systems requires tight collaboration between developers and operations, and automation often takes weeks to get right.
+Beyond that, cloud provider lock-in, complicated deployment strategies (e.g., rollbacks, blue/green deployments), and a lack of deployment tooling increase the risk of failure.
+Motia abstracts these concerns by providing:
+True cloud-provider agnosticism
+Atomic blue/green deployments and one-click rollbacks via Motia Cloud (canary support coming soon)
+First-class polyglot backend support (currently Node.js and Python, with more on the way)
+The image above shows several Steps being build to a single Motia deployable that are ultimately deployed to a cloud provider of your choice.
+Currently we're supporting AWS and Kubernetes, more Cloud providers coming soon. Check ourroadmapfor more details.
+Rollbacks and deployment strategies
+Deploying cloud-native, fault-tolerant applications often involves modifying queue systems and other infrastructure components.
+These changes can introduce incompatibilities and lead to runtime failures.
+Motia Cloud solves this withAtomic Deployments, which:
+Each deployment spins up a new isolated service that shares the same data layer
+Ensures safe, rollback-capable deployments without risking service downtime
+Instant rollbacks with one click since each deployment is isolated
+Real-time data streaming
+Handling real-time data is one of the most common—and complex—challenges in backend development. It's necessary when building event-driven applications,
+and it typically requires setting up and maintaining a significant amount of infrastructure.
+Motia provides what we callStreams: Developers define the structure of the data—any changes to these objects are streamed to all subscribed clients in real-time.
+The image above shows a Stream definition, a Node.js Step mutating the data and a client subscribing to the stream receiving real-time updates.
+Quick Start
+Get up and running with a new Motia project in just a few seconds.
+On this page
+
+
+
+===== https://www.motia.dev/docs/getting-started/quick-start =====
+
+Quick Start
+Get up and running with a new Motia project in just a few seconds.
+1. Create Your Project
+Usenpxto create a new Motia project. This single command will scaffold a new application and install all necessary dependencies.
+npx
+npxmotia@latestcreate
+npxmotia@latestcreate
+The installer will guide you through a few questions to set up your project. Once it's done, you will have a new project directory ready to go.
+2. Start the Development Server
+Navigate into your new project directory and start the Motia development server.
+cd<your-project-name># If you've created a new folder for the project, navigate into itnpxmotiadev
+cd<your-project-name># If you've created a new folder for the project, navigate into itnpxmotiadev
+Thecreatecommand usesnpmby default. If you chose a different package manager during setup, usepnpm dev,yarn dev, orbun dev.
+create
+npm
+pnpm dev
+yarn dev
+bun dev
+This command starts the Motia runtime and the Workbench, a powerful UI for developing and debugging your workflows. By default, it's available athttp://localhost:3000.
+http://localhost:3000
+3. Run Your First Flow
+The starter project comes with a pre-builtbasic-tutorialflow. Let's run it.
+basic-tutorial
+Open the Workbenchin your browser athttp://localhost:3000.
+http://localhost:3000
+Click theTutorialbutton on the top right of the workbench.
+Tutorial
+Complete theTutorialto get an understanding of the basics of Motia and using the Workbench.
+Tutorial
+Next Steps
+Congratulations! You've successfully ran, and observed your first Motia workflow.
+Build your first application from scratch, follow ourBuild Your First Motia Appguide.
+To learn about Motia, dive into ourCore Concepts.
+Welcome to Motia
+Motia is a multi-language, event-driven runtime manager built on a core primitive: the Step. It feels like a backend framework, but powers distributed backends for APIs, background jobs, queues, workflows, agents, streaming, state, and observability, all unified in one system.
+Build Your First Motia App
+Learn Motia step-by-step by building a real pet store backend
+On this page
+

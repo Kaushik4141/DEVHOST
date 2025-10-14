@@ -1,0 +1,303 @@
+[
+  {
+    "title": "What is Nodemailer?",
+    "category": "Concept",
+    "summary": "Nodemailer is a powerful and easy-to-use module for Node.js applications that lets you send emails. Think of it as your reliable digital postman, handling all the complexities of email sending, from simple texts to rich HTML with attachments, across various email services.",
+    "example": "Nodemailer is for sending emails from your Node.js application. It's like having a built-in email client directly in your code.",
+    "animation": null
+  },
+  {
+    "title": "Nodemailer Key Advantages",
+    "category": "Concept",
+    "summary": "Nodemailer stands out due to its 'zero runtime dependencies' approach, making it lean and secure. It offers robust security, supports all Unicode characters (including emojis), works seamlessly across different operating systems (Linux, macOS, Windows, Azure), and includes features like HTML email with plain-text fallbacks, attachments, TLS/STARTTLS encryption, multiple transport options (SMTP, Sendmail, SES), DKIM signing, OAuth2, proxy support, and a plugin API. It even provides built-in test accounts from Ethereal.email for easy development.",
+    "example": null,
+    "animation": "Display a checklist appearing item by item: 'Zero dependencies', 'Security First', 'Unicode Everywhere', 'Cross-platform', 'HTML/Plaintext', 'Attachments', 'TLS/STARTTLS', 'Multiple Transports', 'DKIM/OAuth2', 'Proxy Support', 'Plugin API', 'Ethereal Test Accounts'."
+  },
+  {
+    "title": "Nodemailer Installation",
+    "category": "Setup",
+    "summary": "To use Nodemailer in your Node.js project, you first need to install it via npm, the Node.js package manager. This adds the necessary code to your project.",
+    "example": "To install Nodemailer:\n```bash\nnpm install nodemailer\n```",
+    "animation": "A terminal window appears, 'npm install nodemailer' is typed, and then a 'checkmark' or 'package icon' appears next to 'nodemailer' in a 'node_modules' directory visualization."
+  },
+  {
+    "title": "Nodemailer Quick-Start Guide",
+    "category": "Setup",
+    "summary": "Sending an email with Nodemailer is a simple three-step process: 1. Create a 'transporter' (your email sender configuration), 2. Compose your message (sender, recipients, subject, content), and 3. Send the message using the transporter.",
+    "example": "```javascript\nconst nodemailer = require(\"nodemailer\");\n\n// 1. Create a transporter\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.ethereal.email\",\n  port: 587,\n  secure: false,\n  auth: {\n    user: \"test@example.com\",\n    pass: \"password\"\n  }\n});\n\n// 2. Compose a message & 3. Send it\n(async () => {\n  const info = await transporter.sendMail({\n    from: '\"Sender Name\" <sender@example.com>',\n    to: \"recipient@example.com\",\n    subject: \"Hello ✔\",\n    text: \"Hello world?\",\n    html: \"<b>Hello world?</b>\",\n  });\n  console.log(\"Message sent: %s\", info.messageId);\n})();\n```",
+    "animation": "Visualize three steps: 1. A 'wrench' icon for 'Create Transporter' with server details. 2. A 'quill pen' icon for 'Compose Message' showing fields like From, To, Subject. 3. A 'paper airplane' icon for 'Send Mail' flying towards an 'Inbox'."
+  },
+  {
+    "title": "The Transporter Concept",
+    "category": "Concept",
+    "summary": "In Nodemailer, a 'transporter' is like the delivery truck for your emails. It's an object configured with all the necessary details (like server address, port, authentication) to connect to an email service (e.g., Gmail's SMTP server, Amazon SES) and deliver your messages. You create it once and reuse it for all your emails to avoid unnecessary overhead.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\",\n  port: 587,\n  secure: false,\n  auth: {\n    user: process.env.SMTP_USER,\n    pass: process.env.SMTP_PASS,\n  },\n});\n// Reuse 'transporter' for all emails\n```",
+    "animation": "A truck labeled 'Transporter' is shown. Configuration options (host, port, auth) appear as parameters loading into the truck. The truck is then ready to pick up email packages."
+  },
+  {
+    "title": "Using `nodemailer.createTransport()`",
+    "category": "API",
+    "summary": "The `nodemailer.createTransport()` function is used to create a reusable transporter instance. You pass it an `options` object detailing the email service connection (like SMTP server details) and optionally a `defaults` object to set common fields for all messages sent via this transporter.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\",\n  port: 587,\n  auth: {\n    user: \"username\",\n    pass: \"password\",\n  },\n}, { from: '\"Default Sender\" <default@example.com>' }); // defaults\n```",
+    "animation": "A factory machine labeled 'createTransport' takes in 'options' and 'defaults' gears. It then outputs a 'Transporter' object, which is then shown as a ready-to-use tool."
+  },
+  {
+    "title": "Verifying Transporter Connection",
+    "category": "API",
+    "summary": "Before sending emails, it's good practice to verify that your transporter can successfully connect and authenticate with the email server. The `transporter.verify()` method checks DNS resolution, TCP handshake, and authentication, ensuring your setup is correct.",
+    "example": "```javascript\n(async () => {\n  try {\n    await transporter.verify();\n    console.log(\"Server is ready to take our messages\");\n  } catch (err) {\n    console.error(\"Verification failed\", err);\n  }\n})();\n```",
+    "animation": "A 'Transporter' icon sends a small 'probe' (data packet) to a 'Mail Server' icon. The probe goes through 'DNS Lookup', 'TCP Handshake', and 'Authentication' stages, with checkmarks or 'X' marks appearing at each stage, eventually returning 'Connection Verified!' or 'Verification Failed!'."
+  },
+  {
+    "title": "Sending an Email with `transporter.sendMail()`",
+    "category": "API",
+    "summary": "Once you have a configured transporter, you send an email by calling `transporter.sendMail()` and passing it a message object. This function returns an `info` object (or passes it to a callback) containing details about the sent message, like its `messageId`.",
+    "example": "```javascript\n(async () => {\n  const info = await transporter.sendMail({\n    from: '\"Team\" <team@example.com>',\n    to: \"alice@example.com\",\n    subject: \"Your Project Update\",\n    text: \"Here's the latest...\",\n    html: \"<b>Here's the latest...</b>\",\n  });\n  console.log(\"Message sent: %s\", info.messageId);\n})();\n```",
+    "animation": "An 'Email' object (from, to, subject, body) slides into the 'Transporter' icon. The transporter then sends a 'paper airplane' icon across the screen to an 'Inbox', and a small 'info' bubble appears with 'Message ID: XYZ'."
+  },
+  {
+    "title": "The `info` Object from `sendMail()`",
+    "category": "API",
+    "summary": "After successfully sending an email, `transporter.sendMail()` returns an `info` object. This object provides important feedback, such as the `messageId` (a unique ID assigned to the message), the `envelope` (the actual sender and recipient addresses used by the SMTP server), and arrays of `accepted` and `rejected` recipients. If at least one recipient accepts the message, it's considered sent.",
+    "example": "```javascript\n// 'info' object example after sending mail:\n// {\n//   messageId: '<unique-id@example.com>',\n//   envelope: { from: 'sender@example.com', to: ['recipient@example.com'] },\n//   accepted: ['recipient@example.com'],\n//   rejected: [],\n//   pending: [],\n//   response: '250 2.0.0 OK ...'\n// }\n```",
+    "animation": "An 'Email' graphic flies into an 'Outbox'. A 'Return Receipt' card flies back to the sender, detailing `messageId`, `envelope`, and lists of `accepted` and `rejected` recipients."
+  },
+  {
+    "title": "Common Email Message Fields",
+    "category": "API",
+    "summary": "When composing an email message in Nodemailer, you'll use a message object with various fields. The most common ones include `from` (sender's address), `to`, `cc`, `bcc` (recipient addresses), `subject` (email title), `text` (plain-text body), `html` (HTML body), and `attachments` (array of files).",
+    "example": "```javascript\nconst message = {\n  from: '\"Sender Name\" <sender@example.com>',\n  to: \"recipient1@example.com, recipient2@example.com\",\n  cc: \"carboncopy@example.com\",\n  bcc: \"secret@example.com\",\n  subject: \"My Important Email\",\n  text: \"This is the plain text content.\",\n  html: \"<p>This is the <b>HTML</b> content.</p>\",\n  attachments: [\n    { filename: 'document.pdf', path: '/path/to/doc.pdf' }\n  ]\n};\n```",
+    "animation": "A blank email template appears. As each field (`from`, `to`, `subject`, `text`, `html`, `attachments`) is mentioned, the corresponding section of the email template lights up and a label appears for it."
+  },
+  {
+    "title": "Advanced Email Message Fields",
+    "category": "API",
+    "summary": "Beyond the common fields, Nodemailer offers advanced options for fine-tuning your emails. These include `sender` (specific return address), `replyTo`, `inReplyTo`, `references` (for email threads), `envelope` (SMTP layer control), `attachDataUrls` (convert data URIs to attachments), `watchHtml` (Apple Watch specific HTML), `amp` (AMP4EMAIL content), `icalEvent` (calendar invites), `alternatives` (different content formats), `encoding`, `raw` (pre-formatted MIME), `textEncoding`, `priority`, `headers` (custom headers), `messageId`, `date`, `list` (mailing list headers), `disableFileAccess`, and `disableUrlAccess`.",
+    "example": "```javascript\nconst message = {\n  // ... common fields ...\n  priority: 'high',\n  icalEvent: { /* ... iCalendar data ... */ },\n  headers: { 'X-Custom-Header': 'MyValue' },\n  // ... more advanced fields ...\n};\n```",
+    "animation": "An 'Advanced Settings' panel slides out from a basic email interface. Icons representing each advanced field (e.g., 'calendar' for icalEvent, 'wrench' for custom headers) animate onto the panel."
+  },
+  {
+    "title": "Email Address Formats",
+    "category": "Concept",
+    "summary": "Nodemailer is flexible with email address formats. You can use a simple plain address (`'user@example.com'`), a formatted address with a display name (`'\"Sender Name\" <sender@example.com>'`), or a structured address object (`{ name: 'Sender Name', address: 'sender@example.com' }`). You can mix and match these formats and provide multiple addresses as a comma-separated string or an array in any recipient field (`from`, `to`, `cc`, `bcc`, `replyTo`). It also automatically handles Internationalized Domain Names (IDNs) by converting them to Punycode.",
+    "example": "```javascript\nconst message = {\n  from: '\"Example Sender\" <sender@example.com>',\n  to: [\n    'foobar@example.com',\n    '\"Ноде Майлер\" <bar@example.com>', // Unicode display name\n    { name: 'Name, User', address: 'baz@example.com' } // Address object\n  ],\n  // ... other fields ...\n};\n```",
+    "animation": "Three text boxes appear, showing the three address formats. Then, a 'To:' field expands to show various combinations of these formats being added to a list, demonstrating flexibility. Finally, a globe icon transforms an IDN to its Punycode equivalent."
+  },
+  {
+    "title": "Attaching Files to Emails",
+    "category": "API",
+    "summary": "To add files to your email, use the `attachments` array within your message object. Each element in this array is an object describing a file. Nodemailer supports various sources for attachments: plain strings, Buffers, local file paths (streamed for efficiency), remote URLs, readable streams, Base64-encoded strings, or Data URIs. For large files, prefer `path`, `href`, or `Stream` to avoid loading the entire file into memory.",
+    "example": "```javascript\nconst fs = require(\"fs\");\nconst message = {\n  // ... other fields ...\n  attachments: [\n    { filename: \"hello.txt\", content: \"Hello world!\" },\n    { filename: \"report.pdf\", path: \"/path/to/report.pdf\" }, // Local file\n    { filename: \"notes.txt\", content: fs.createReadStream(\"./notes.txt\") }, // Stream\n    { filename: \"license.txt\", href: \"https://raw.githubusercontent.com/.../LICENSE\" }, // Remote URL\n    { filename: \"photo.jpg\", content: \"/9j/...\", encoding: \"base64\" }, // Base64\n    { path: \"data:text/plain;base64,SGVsbG8gd29ybGQ=\" }, // Data URI\n  ],\n};\n```",
+    "animation": "An email icon with a paperclip. Different icons (TXT, PDF, URL, Image base64, data URI) animate towards the paperclip, each representing a different attachment source, then 'attach' to the email."
+  },
+  {
+    "title": "Embedding Images in HTML (CID)",
+    "category": "Concept",
+    "summary": "Instead of attaching images as separate files, you can embed them directly into the HTML body of your email using Content IDs (CIDs). This ensures the image displays inline, even if the recipient's email client blocks external image loading. You add the image to the `attachments` array, assign a unique `cid`, and then reference it in your HTML `<img>` tag using `src=\"cid:your-cid\"`.",
+    "example": "```javascript\nconst message = {\n  html: '<p>Our logo: <img src=\"cid:logo@example.com\" alt=\"logo\"></p>',\n  attachments: [\n    {\n      filename: 'logo.png',\n      path: './assets/logo.png',\n      cid: 'logo@example.com' // Unique Content ID\n    },\n  ],\n};\n```",
+    "animation": "An empty HTML email body appears. An image file (e.g., 'logo.png') flies into the attachments section, a 'CID: logo@example.com' label appears next to it. Then, an `<img>` tag in the HTML body points to this CID, and the logo instantly appears embedded within the HTML email."
+  },
+  {
+    "title": "Alternative Content Representations",
+    "category": "Concept",
+    "summary": "Beyond standard plain-text (`text`) and HTML (`html`) bodies, Nodemailer lets you include 'alternative' versions of your content in the `alternatives` array. This allows email clients to choose the best format for the recipient (e.g., Markdown, iCalendar event). The key difference from regular attachments is how Nodemailer organizes them in the MIME structure: alternatives are part of `multipart/alternative` for different *representations* of the *same* content, whereas attachments are `multipart/mixed` or `multipart/related` for *additional* files.",
+    "example": "```javascript\nconst message = {\n  html: \"<b>Hello world!</b>\",\n  alternatives: [\n    {\n      contentType: \"text/x-web-markdown\",\n      content: \"**Hello world!**\",\n    },\n  ],\n};\n```",
+    "animation": "Show an email with a main HTML body. Then, a 'menu' icon appears, and another content type (e.g., Markdown) slides in as an 'alternative'. Emphasize that the client picks one, rather than showing both simultaneously. Compare this to an attachment icon floating alongside, clearly separate."
+  },
+  {
+    "title": "Sending Calendar Events (icalEvent)",
+    "category": "API",
+    "summary": "Nodemailer provides a dedicated `icalEvent` option to embed iCalendar (.ics) files directly into your emails. This allows calendar-aware clients (like Gmail, Outlook, Apple Mail) to display 'Add to Calendar' or 'Accept/Decline' controls. Nodemailer *attaches* the `.ics` file; you'll need a separate library (like `ical-generator`) to *create* the iCalendar content itself. For best compatibility, keep calendar emails simple: just `text`, `html`, and the `icalEvent`.",
+    "example": "```javascript\nconst appointment = `BEGIN:VCALENDAR...END:VCALENDAR`; // Generated ICS string\n\nconst message = {\n  from: \"sender@example.com\",\n  to: \"recipient@example.com\",\n  subject: \"Meeting Invite\",\n  text: \"Please see the attached appointment\",\n  icalEvent: {\n    filename: \"invitation.ics\",\n    method: \"REQUEST\", // or 'PUBLISH', 'REPLY', 'CANCEL'\n    content: appointment,\n  },\n};\n```",
+    "animation": "An email flies into an inbox. A small 'calendar' icon pops out from the email, displaying 'Add to Calendar' or 'Accept/Decline' buttons. Show a conceptual flow: 'ical-generator' -> creates '.ics text' -> 'Nodemailer icalEvent' -> 'Email'."
+  },
+  {
+    "title": "Custom List-* Headers",
+    "category": "API",
+    "summary": "For mailing list emails, RFC 2369 defines `List-*` headers (like `List-Help`, `List-Unsubscribe`) that email clients use to offer quick actions to recipients. Nodemailer simplifies adding these by providing a `list` message option. You define an object where keys become the `List-*` header names, allowing clients to easily provide 'unsubscribe' links or 'help' addresses.",
+    "example": "```javascript\nconst message = {\n  from: \"sender@example.com\",\n  to: \"recipient@example.com\",\n  subject: \"Newsletter\",\n  text: \"I hope no-one unsubscribes!\",\n  list: {\n    help: \"admin@example.com?subject=help\",\n    unsubscribe: { url: \"http://example.com/unsubscribe\", comment: \"Comment\" },\n    subscribe: [\"admin@example.com?subject=subscribe\", { url: \"http://example.com/subscribe\", comment: \"Subscribe\" }],\n  },\n};\n```\nResulting headers (excerpt):\n`List-Help: <mailto:admin@example.com?subject=help>`\n`List-Unsubscribe: <http://example.com/unsubscribe> (Comment)`",
+    "animation": "An email icon appears. A 'List-Unsubscribe' button appears on the email, and then a hidden 'headers' section expands to show the corresponding `List-*` headers being added to the email's metadata."
+  },
+  {
+    "title": "Adding Custom Headers",
+    "category": "API",
+    "summary": "Nodemailer automatically generates standard email headers, but you can add your own or override non-protected ones using the `headers` property in your message object (or even per attachment/alternative). Keys are converted to canonical names (e.g., `x-my-key` to `X-My-Key`), and values are encoded and wrapped. You can also bypass Nodemailer's encoding for pre-formatted values.",
+    "example": "```javascript\nconst message = {\n  subject: \"Email with custom headers\",\n  text: \"Hello world!\",\n  headers: {\n    \"x-my-key\": \"my value\",\n    \"x-another-key\": [\"value 1\", \"value 2\"], // Repeat header\n    \"x-prepared-header\": { prepared: true, value: \"🚀 already encoded\" }, // Bypass encoding\n  },\n  attachments: [{\n    filename: \"report.csv\",\n    content: \"a,b\\n1,2\",\n    headers: { \"x-report-id\": \"2025-Q1\" } // Header on attachment\n  }]\n};\n```",
+    "animation": "An email opens up to reveal its header section. New custom headers animate into place, showing how a single key can have multiple values or how pre-formatted values are inserted."
+  },
+  {
+    "title": "Using Raw MIME Message Source",
+    "category": "API",
+    "summary": "If you already have a complete, pre-formatted RFC 822 / EML message (perhaps from another system or storage), Nodemailer allows you to send it verbatim using the `raw` option. This bypasses Nodemailer's internal MIME generation, delivering exactly what you provide. When sending the entire message as `raw`, you *must* also specify `envelope.from` and `envelope.to` for the SMTP transaction, as these are not extracted from the raw source.",
+    "example": "```javascript\nconst message = {\n  envelope: {\n    from: \"sender@example.com\",\n    to: [\"recipient@example.com\"],\n  },\n  raw: `From: sender@example.com\\nTo: recipient@example.com\\nSubject: Hello world\\n\\nHello world!`,\n};\n\n// Or from an EML file:\nconst messageFromFile = {\n  envelope: { from: \"sender@example.com\", to: [\"recipient@example.com\"] },\n  raw: { path: \"/path/to/message.eml\" },\n};\n```",
+    "animation": "A fully formed 'EML file' icon drops into a 'Nodemailer' box. An internal process is shown being 'skipped'. The EML file then passes through to the 'SMTP Server'. A reminder highlights to set 'envelope.from' and 'envelope.to' separately."
+  },
+  {
+    "title": "SMTP Transport Overview",
+    "category": "Concept",
+    "summary": "SMTP (Simple Mail Transfer Protocol) is the default and most universal mechanism Nodemailer uses to send emails. It's the standard protocol for email exchange between mail servers. This means you can easily switch between email providers by just changing the SMTP configuration, avoiding vendor lock-in. Nodemailer's SMTP transport is highly configurable, allowing control over connection, security (TLS), authentication, and more.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\",\n  port: 587,\n  secure: false, // Use STARTTLS for upgrade\n  auth: {\n    user: \"username\",\n    pass: \"password\",\n  },\n});\n```",
+    "animation": "A mail server labeled 'SMTP Server' with data flowing in/out. A 'Nodemailer' icon sends an 'Email' message to the SMTP server. Connections lines show 'host', 'port', 'auth' parameters."
+  },
+  {
+    "title": "SMTP Transport General Options",
+    "category": "API",
+    "summary": "When creating an SMTP transporter, several general options configure the connection: `host` (the SMTP server address, e.g., 'smtp.example.com'), `port` (e.g., 587 for STARTTLS, 465 for SMTPS), `secure` (boolean, `true` for SMTPS, `false` for STARTTLS), `service` (a shortcut string for well-known services like 'gmail'), and `auth` (an object for authentication credentials).",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\", // Server address\n  port: 587, // Standard port for STARTTLS\n  secure: false, // Connection starts insecure, upgrades with STARTTLS\n  auth: {\n    user: \"myuser\",\n    pass: \"mypassword\",\n  },\n});\n```",
+    "animation": "A series of dials and input fields labeled 'Host', 'Port', 'Secure', 'Auth'. As each option is explained, the corresponding dial/field is highlighted and its value shown."
+  },
+  {
+    "title": "SMTP Transport TLS Options",
+    "category": "API",
+    "summary": "Nodemailer provides options for Transport Layer Security (TLS) for secure SMTP connections. `secure: true` uses SMTPS (implicit TLS on port 465), while `secure: false` typically means STARTTLS (explicit TLS upgrade on other ports like 587). You can customize TLS behavior with the `tls` object (e.g., `rejectUnauthorized` for self-signed certificates) or force non-TLS behavior with `ignoreTLS` or `requireTLS`.",
+    "example": "```javascript\n// SMTPS (implicit TLS)\nconst secureTransporter = nodemailer.createTransport({\n  host: \"smtp.example.com\", port: 465, secure: true, auth: { /* ... */ }\n});\n\n// STARTTLS (explicit TLS upgrade)\nconst startTlsTransporter = nodemailer.createTransport({\n  host: \"smtp.example.com\", port: 587, secure: false, auth: { /* ... */ }\n});\n\n// Allow self-signed certificates\nconst insecureTlsTransporter = nodemailer.createTransport({\n  host: \"my.smtp.host\", port: 465, secure: true,\n  auth: { /* ... */ },\n  tls: { rejectUnauthorized: false },\n});\n```",
+    "animation": "A connection line between 'Nodemailer' and 'SMTP Server'. Show 'secure: false' leading to a handshake with 'STARTTLS' encryption icon appearing. Show 'secure: true' immediately having the encryption icon. Then, a padlock icon with a 'rejectUnauthorized: false' bypass for self-signed certs."
+  },
+  {
+    "title": "SMTP Transport Authentication Methods",
+    "category": "API",
+    "summary": "Nodemailer supports various authentication methods for SMTP servers via the `auth` option. The default is 'login' for username/password. It also has built-in support for OAuth 2.0 (especially with Gmail helpers) and allows for custom authentication handlers if your server uses an unsupported method. If `auth` is omitted, the connection is treated as unauthenticated.",
+    "example": "```javascript\n// Login authentication (default)\nconst loginTransporter = nodemailer.createTransport({\n  /* ... */ auth: { user: \"username\", pass: \"password\" }\n});\n\n// OAuth 2.0 with access token\nconst oauthTransporter = nodemailer.createTransport({\n  /* ... */ auth: { type: \"OAuth2\", user: \"user@example.com\", accessToken: \"token\" }\n});\n\n// Unauthenticated (rare)\nconst unauthTransporter = nodemailer.createTransport({ host: \"smtp.example.com\" });\n```",
+    "animation": "A 'Mail Server' has a 'Guard' (authentication). Show different 'ID cards' being presented: 'Username/Password' (LOGIN), 'Fancy Badge' (OAuth2 token), and an 'empty card' for unauthenticated connections. A 'Custom ID Card' for customAuth."
+  },
+  {
+    "title": "SMTP Envelope",
+    "category": "Concept",
+    "summary": "An email technically has two sets of addresses: the visible 'Message Headers' (like `From:`, `To:`, etc., which email clients display) and the underlying 'SMTP Envelope Commands' (`MAIL FROM:`, `RCPT TO:`) used by mail servers for routing and bounce handling. By default, Nodemailer automatically generates the envelope from your message headers. However, you can explicitly control the `MAIL FROM` and `RCPT TO` addresses using the `envelope` property for advanced use cases like VERP (Variable Envelope Return Path) or hidden mailing list recipients.",
+    "example": "```javascript\nconst message = {\n  from: \"Mailer <mailer@example.com>\", // Visible From: header\n  to: \"Daemon <daemon@example.com>\",   // Visible To: header\n  envelope: {\n    from: \"bounce+12345@example.com\",   // Actual MAIL FROM: address\n    to: [\"daemon@example.com\", \"another@example.com\"], // Actual RCPT TO: addresses\n  },\n  subject: \"Custom SMTP envelope\",\n  text: \"Hello!\",\n};\n```",
+    "animation": "An animation of an actual physical letter. First, show the visible 'From' and 'To' written on the letter itself. Then, slide the letter into an 'envelope'. On the envelope, distinct 'MAIL FROM' and 'RCPT TO' labels appear, demonstrating they can be different from the letter's content."
+  },
+  {
+    "title": "Pooled SMTP Connections",
+    "category": "Concept",
+    "summary": "For high-volume email sending or when an SMTP provider caps parallel connections, 'pooled' SMTP connections are beneficial. Nodemailer keeps a fixed number of TCP/TLS connections open to the SMTP server and reuses them. This significantly reduces latency from repeated TLS handshakes and authentication for each message, making sending faster and more efficient.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\",\n  port: 465,\n  secure: true,\n  pool: true,           // Enable connection pooling\n  maxConnections: 5,    // Max open connections\n  maxMessages: 100,     // Max messages per connection before closing\n  auth: { user: \"username\", pass: \"password\" },\n});\n\n// Reuse this 'transporter' instance throughout your application\n```",
+    "animation": "Show a 'pool' of connection lines to an SMTP server. When emails are sent, they quickly utilize an existing connection from the pool, avoiding the 'handshake' animation that would occur with single connections. Demonstrate `maxConnections` by filling up slots, and `maxMessages` by showing a connection being recycled after N emails."
+  },
+  {
+    "title": "Using Ethereal Email for Testing SMTP",
+    "category": "Best Practice",
+    "summary": "When developing or testing email functionality, it's crucial to avoid sending real emails. Ethereal Email is a free, open-source 'mail catcher' service designed for this purpose. It acts like a real SMTP server but never delivers messages, instead storing them in a web UI for inspection. Nodemailer has built-in support to create temporary Ethereal accounts (`createTestAccount`) or use persistent ones, making testing safe and easy.",
+    "example": "```javascript\nconst nodemailer = require(\"nodemailer\");\n\nnodemailer.createTestAccount((err, account) => {\n  if (err) return console.error(\"Failed to create testing account:\", err.message);\n\n  const transporter = nodemailer.createTransport({\n    host: account.smtp.host,\n    port: account.smtp.port,\n    secure: account.smtp.secure,\n    auth: { user: account.user, pass: account.pass },\n  });\n\n  transporter.sendMail({\n    from: \"dev@example.com\",\n    to: \"test@example.com\",\n    subject: \"Test Email\",\n    text: \"This is a test email.\",\n  }).then((info) => {\n    console.log(\"Preview URL: %s\", nodemailer.getTestMessageUrl(info));\n  });\n});\n```",
+    "animation": "A 'Nodemailer' icon sends an email. Instead of going to a regular 'Inbox', it flies into a 'Catching Net' icon labeled 'Ethereal Email'. The net then displays a 'web UI' icon, showing the caught email for inspection, rather than actual delivery."
+  },
+  {
+    "title": "Using Gmail with Nodemailer",
+    "category": "Setup",
+    "summary": "While convenient for testing, Gmail is not recommended for production email workloads due to aggressive anti-abuse heuristics and sending limits. For new projects, OAuth 2.0 is the recommended authentication method, requiring a one-time consent flow and storing a `refresh_token`. Alternatively, if 2-Step Verification is enabled, you can use an App Password. Be aware that Gmail always rewrites the `From:` header to match the authenticated account, and imposes daily sending limits (500 recipients for personal, 2000 for Google Workspace). For predictable, high-volume delivery, specialized SMTP providers are preferred.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  service: \"gmail\",\n  auth: {\n    type: \"OAuth2\",\n    user: \"me@gmail.com\",\n    clientId: process.env.GOOGLE_CLIENT_ID,\n    clientSecret: process.env.GOOGLE_CLIENT_SECRET,\n    refreshToken: process.env.GOOGLE_REFRESH_TOKEN,\n  },\n});\n```",
+    "animation": "A 'Nodemailer' icon attempts to send emails through a 'Gmail Server' icon. Show a 'traffic light' icon turning red for 'production' traffic (due to aggressive heuristics), but green for 'development' with OAuth2. Illustrate the 'From header rewrite' with an original 'from' label being replaced by the 'authenticated user' label."
+  },
+  {
+    "title": "SMTP `MAIL FROM` and `RCPT TO` (Envelope)",
+    "category": "Concept",
+    "summary": "The SMTP envelope is the 'outer packaging' of an email, containing the `MAIL FROM` (return path for bounces) and `RCPT TO` (actual delivery addresses) commands. These are distinct from the `From:` and `To:` headers visible in the email client. Nodemailer usually auto-generates the envelope, but you can explicitly define `envelope.from` and `envelope.to` in your message options for advanced scenarios like VERP (where each message has a unique return path for bounce tracking) or sending to hidden recipients not listed in the headers.",
+    "example": "```javascript\nconst message = {\n  from: \"visible@example.com\",\n  to: \"visible_recipient@example.com\",\n  envelope: {\n    from: \"bounce-address@example.com\", // For bounce handling\n    to: [\"actual_recipient@example.com\", \"hidden_recipient@example.com\"],\n  },\n  subject: \"Envelope control demo\",\n  text: \"This message uses a custom SMTP envelope.\",\n};\n```",
+    "animation": "An animation starts with an 'email message' object with visible 'From:' and 'To:' headers. A 'layer' slides over it, representing the SMTP envelope, with different 'MAIL FROM:' and 'RCPT TO:' values. An arrow points from 'MAIL FROM:' to a 'bounce mailbox' icon, and from 'RCPT TO:' to multiple 'inboxes'."
+  },
+  {
+    "title": "SMTP Service Provider Presets",
+    "category": "Concept",
+    "summary": "Nodemailer includes built-in connection presets for many popular SMTP providers (e.g., Gmail, Outlook). Instead of manually configuring `host`, `port`, and `secure` settings, you can simply pass a `service` string (like `'Gmail'`) to `createTransport()`. Nodemailer then fills in the standard connection details for you, simplifying setup. Remember that while these presets handle server connection, you're still responsible for providing the correct authentication (e.g., OAuth2 or App Passwords).",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  service: \"Gmail\", // Automatically configures host, port, secure for Gmail\n  auth: {\n    user: process.env.SMTP_USER,\n    pass: process.env.SMTP_PASS,\n  },\n});\n```",
+    "animation": "A 'magic wand' icon touches a 'service: Gmail' input. This instantly fills in a series of hidden fields like 'host: smtp.gmail.com', 'port: 465', 'secure: true'. Show a list of popular service logos with corresponding 'service' strings."
+  },
+  {
+    "title": "Custom SMTP Authentication Handlers",
+    "category": "API",
+    "summary": "If your SMTP server uses a non-standard or custom authentication method that Nodemailer doesn't natively support (e.g., `MY-CUSTOM-METHOD`), you can extend its functionality by defining a custom authentication handler. You provide a `customAuth` map in the transporter options, where each key is the mechanism name and the value is a function that interacts with the SMTP server using `ctx.sendCommand()` to perform the authentication exchange.",
+    "example": "```javascript\nasync function myCustomMethod(ctx) {\n  const token = Buffer.from(ctx.auth.credentials.pass).toString(\"base64\");\n  const response = await ctx.sendCommand(\"AUTH MY-CUSTOM-METHOD \" + token);\n  if (response.status < 200 || response.status >= 300) {\n    throw new Error(\"Auth failed: \" + response.text);\n  }\n}\n\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\", port: 465, secure: true,\n  auth: { type: \"custom\", method: \"MY-CUSTOM-METHOD\", user: \"u\", pass: \"p\" },\n  customAuth: { \"MY-CUSTOM-METHOD\": myCustomMethod },\n});\n```",
+    "animation": "A 'Nodemailer' icon tries to connect to an 'SMTP Server'. The server asks for 'MY-CUSTOM-METHOD'. A 'Custom Handler' box appears, takes the 'username/pass', transforms it, and sends commands back and forth with the server until a 'Success' message appears."
+  },
+  {
+    "title": "Using Proxies for SMTP Connections",
+    "category": "Setup",
+    "summary": "Nodemailer supports sending emails through outbound proxies, which is useful in restricted network environments. It natively understands HTTP CONNECT proxies. For SOCKS4/4a/5 proxies, you can install the `socks` package, and Nodemailer will automatically integrate it. You can also define custom proxy handler functions for proprietary protocols or unique authentication flows.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\",\n  port: 465,\n  secure: true,\n  proxy: \"http://proxy.example.test:3128\", // HTTP proxy\n});\n\n// For SOCKS proxies (requires 'socks' package):\n// transporter.set(\"proxy_socks_module\", require(\"socks\"));\n// const socksTransporter = nodemailer.createTransport({\n//   host: \"smtp.example.com\", port: 465, secure: true, proxy: \"socks5://127.0.0.1:1080\"\n// });\n```",
+    "animation": "A 'Nodemailer' icon sends an 'Email' through a 'Firewall' icon. The email then detours through a 'Proxy Server' icon (HTTP/SOCKS labels appear) before reaching the 'SMTP Server'."
+  },
+  {
+    "title": "Delivery Status Notifications (DSN)",
+    "category": "Concept",
+    "summary": "Delivery Status Notifications (DSN), defined in RFC 3461, allow you to request reports from the SMTP service about the delivery status of your emails. You can ask for notifications on success, failure, or delay for individual messages by adding a `dsn` object to your `sendMail()` options. This feature requires your SMTP provider to support the DSN extension.",
+    "example": "```javascript\nconst message = {\n  from: \"sender@example.com\",\n  to: \"recipient@example.com\",\n  subject: \"DSN Enabled Message\",\n  text: \"I hope this message gets read!\",\n  dsn: {\n    id: \"msg-123\", // Unique ID for this notification\n    return: \"headers\", // Return only headers with notification\n    notify: \"success\", // Request notification on success\n    recipient: \"sender@example.com\", // Where to send the notification\n  },\n};\n// await transporter.sendMail(message);\n```",
+    "animation": "An 'Email' flies from 'Nodemailer' to 'SMTP Server'. The SMTP server has a 'clipboard' labeled 'DSN request'. If the email is 'delivered', a small 'notification' icon flies back to the sender from the SMTP server with 'Success' text. If 'failed', a 'Failure' icon flies back."
+  },
+  {
+    "title": "Other Transport Types",
+    "category": "Concept",
+    "summary": "While SMTP is the default, Nodemailer is not limited to it. A 'transport' is simply the method Nodemailer uses to hand off a message. Besides SMTP, built-in transports include `Sendmail` (piping to a local sendmail binary), `SES` (for Amazon Simple Email Service via AWS SDK), and `Stream` (for outputting the raw MIME message). There are also community-maintained transports for services like Mailtrap or Mailgun, and you can create your own custom transports.",
+    "example": "```javascript\n// Using Sendmail transport\nconst sendmailTransporter = nodemailer.createTransport({ sendmail: true });\n\n// Using Amazon SES transport (requires @aws-sdk/client-sesv2)\nconst { SESv2Client, SendEmailCommand } = require(\"@aws-sdk/client-sesv2\");\nconst sesTransporter = nodemailer.createTransport({\n  SES: { sesClient: new SESv2Client({ region: \"us-east-1\" }), SendEmailCommand },\n});\n\n// Using Stream transport for testing/auditing\nconst streamTransporter = nodemailer.createTransport({ streamTransport: true });\n```",
+    "animation": "A central 'Email' package is shown. Different 'delivery trucks' (icons for SMTP, Sendmail, AWS SES, generic API) drive up to it. Each truck has a different logo or label, representing the various transport mechanisms, demonstrating the versatility."
+  },
+  {
+    "title": "Sendmail Transport",
+    "category": "API",
+    "summary": "The `Sendmail` transport allows Nodemailer to hand off emails to a local `sendmail` (or compatible) binary, usually available on Unix-like systems. It pipes the fully formatted RFC 822 message to the binary's standard input. This is a simple option if you have a local mail server configured. You enable it by setting `sendmail: true` in `createTransport()` options and can specify the `path` to the binary and `args` (command-line arguments) if needed.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  sendmail: true,\n  newline: \"unix\", // Use Unix-style newlines for sendmail\n  path: \"/usr/sbin/sendmail\", // Optional: specify sendmail path\n  args: [\"-f\", \"bounce@example.com\"], // Optional: custom flags\n});\n\ntransporter.sendMail({ /* ... */ }, (err, info) => {\n  if (err) console.error(err);\n  console.log(info.envelope);\n});\n```",
+    "animation": "A 'Nodemailer' icon feeds a 'MIME Message Stream' into a 'CLI Terminal' icon. Inside the terminal, `sendmail -i -f <from> <to...>` command appears and runs. The terminal then shows 'Message Sent' or 'Error'."
+  },
+  {
+    "title": "Amazon SES Transport",
+    "category": "API",
+    "summary": "Nodemailer's built-in `SES` transport enables sending emails through Amazon Simple Email Service (SES). It acts as a thin wrapper around the official AWS SDK v3 `SESv2Client` and `SendEmailCommand`. You need to install `@aws-sdk/client-sesv2` separately and configure the `sesClient` with your AWS credentials. This transport is ideal for robust, scalable email sending within the AWS ecosystem.",
+    "example": "```javascript\nconst { SESv2Client, SendEmailCommand } = require(\"@aws-sdk/client-sesv2\");\n\nconst sesClient = new SESv2Client({ region: \"us-east-1\" });\n\nconst transporter = nodemailer.createTransport({\n  SES: { sesClient, SendEmailCommand },\n});\n\n(async () => {\n  const info = await transporter.sendMail({\n    from: \"sender@example.com\",\n    to: \"recipient@example.com\",\n    subject: \"Hello from Nodemailer + SES\",\n    text: \"This message was sent with Nodemailer & Amazon SES!\",\n    ses: { ConfigurationSetName: \"my-config-set\" }, // SES-specific options\n  });\n  console.log(info.messageId); // SES MessageId\n})();\n```",
+    "animation": "A 'Nodemailer' icon with an 'Email' package. A connection line goes to an 'AWS Cloud' icon with 'SES' written on it. The AWS SDK client is shown as a bridge to SES, and the `SendEmailCommand` is visualized as a specific instruction being passed."
+  },
+  {
+    "title": "Stream Transport",
+    "category": "API",
+    "summary": "The `Stream` transport (enabled with `streamTransport: true` or `jsonTransport: true`) is not for *actual* email delivery but for generating and inspecting the raw RFC 822 email message. It's incredibly useful for testing, debugging, audit logging, or building custom delivery pipelines. It can return the message as a Node.js Readable stream, a Buffer, or a JSON string, allowing you to examine exactly what Nodemailer would send.",
+    "example": "```javascript\nconst transporter = nodemailer.createTransport({\n  streamTransport: true,\n  newline: \"windows\", // CRLF newlines\n});\n\ntransporter.sendMail({ /* ... */ }, (err, info) => {\n  if (err) throw err;\n  console.log(info.envelope);\n  info.message.pipe(process.stdout); // Pipe raw message to console\n});\n\n// For JSON output:\nconst jsonTransporter = nodemailer.createTransport({ jsonTransport: true });\njsonTransporter.sendMail({ /* ... */ }, (err, info) => {\n  console.log(info.message); // JSON string of message\n});\n```",
+    "animation": "A 'Nodemailer' icon with an 'Email' package. Instead of going to an 'SMTP Server', a 'Pipe' icon appears and the raw email data flows out, either into a 'Terminal Window' (stream), a 'Buffer box' (buffer), or a 'JSON file' icon (jsonTransport), allowing inspection."
+  },
+  {
+    "title": "Nodemailer Plugin Lifecycle",
+    "category": "Concept",
+    "summary": "Nodemailer is highly extensible, allowing you to inject custom logic at three key stages of an email's preparation and delivery: \n1. **`compile`**: Before the raw MIME email is built. Great for modifying `mail.data` (e.g., adding text content from HTML). \n2. **`stream`**: After the MIME structure is generated but before it's streamed for sending. Useful for mutating `mail.message` (e.g., adding headers) or transforming the stream. \n3. **`transport`**: The final step where the raw message is sent. Custom transports fully implement this stage.",
+    "example": "```javascript\ntransporter.use(\"compile\", (mail, callback) => {\n  if (!mail.data.text && mail.data.html) {\n    mail.data.text = require(\"html-to-text\").htmlToText(mail.data.html);\n  }\n  callback(); // Continue processing\n});\n```",
+    "animation": "Visualize an email moving along a conveyor belt. At 'Compile' station, a 'robot arm' modifies the email's content (e.g., adding text). At 'Stream' station, another robot arm attaches a 'filter' to the conveyor. At 'Transport' station, the email is picked up by a custom 'delivery vehicle'."
+  },
+  {
+    "title": "DKIM Signing with Nodemailer",
+    "category": "Concept",
+    "summary": "DomainKeys Identified Mail (DKIM) adds a digital signature to your outgoing emails, helping recipient servers verify that the email truly originated from your domain and hasn't been tampered with. This is crucial for email deliverability and combating spam. Nodemailer can sign messages using one or more DKIM keys without extra dependencies. You configure DKIM either transporter-wide (for all messages) or per-message, providing your `domainName`, `keySelector`, and `privateKey`.",
+    "example": "```javascript\nconst fs = require(\"fs\");\nconst transporter = nodemailer.createTransport({\n  host: \"smtp.example.com\", port: 465, secure: true,\n  dkim: {\n    domainName: \"example.com\",\n    keySelector: \"2017\", // Matches your DNS TXT record (e.g., 2017._domainkey.example.com)\n    privateKey: fs.readFileSync(\"./dkim-private.pem\", \"utf8\"),\n  },\n});\n```",
+    "animation": "An 'Email' icon is placed on a 'document' labeled 'DKIM Signer'. A 'digital key' icon stamps a 'signature' onto the email. Then, a 'DNS server' icon is shown, highlighting that the public key is stored there for verification by recipients. Show the signature being 'validated' by the receiving server."
+  },
+  {
+    "title": "Official Nodemailer Companion Libraries",
+    "category": "Concept",
+    "summary": "Beyond sending emails, the Nodemailer ecosystem offers several official companion libraries to handle other email-related tasks in Node.js: \n- `smtp-server`: For building your own SMTP/LMTP server or test harness. \n- `smtp-connection`: A low-level SMTP client for direct connection control. \n- `mailparser`: A streaming parser to convert raw RFC 822 emails into structured JavaScript objects. \n- `mailcomposer`: A utility to generate RFC 822-compliant message bodies from a JavaScript object, without sending them.",
+    "example": "```javascript\nconst { SMTPServer } = require(\"smtp-server\");\nconst { simpleParser } = require(\"mailparser\");\nconst MailComposer = require(\"nodemailer/lib/mail-composer\");\n\n// Example usage: const server = new SMTPServer();\n// const mail = await simpleParser(rawEmailContent);\n// const composedMail = new MailComposer(mailOptions);\n```",
+    "animation": "A central 'Nodemailer' icon is surrounded by four satellite icons: 'Server' (smtp-server), 'Client' (smtp-connection), 'Parser' (mailparser), 'Composer' (mailcomposer). Arrows show data flow between them, illustrating how they complement Nodemailer's core sending functionality."
+  },
+  {
+    "title": "Using `smtp-server` to Create an SMTP/LMTP Server",
+    "category": "API",
+    "summary": "The `smtp-server` module allows you to quickly spin up your own SMTP or LMTP server instances in Node.js. This is useful for testing, capturing incoming emails (like a local Ethereal), or implementing custom mail routing logic. You instantiate `SMTPServer` with options and attach event listeners (e.g., `onAuth`, `onMailFrom`, `onRcptTo`, `onData`) to define how your server responds to client commands and processes incoming messages.",
+    "example": "```javascript\nconst { SMTPServer } = require(\"smtp-server\");\n\nconst server = new SMTPServer({\n  onConnect(session, callback) {\n    if (session.remoteAddress === \"127.0.0.1\") {\n      return callback(new Error(\"Connections from localhost are not allowed\"));\n    }\n    callback(); // Accept connection\n  },\n  onAuth(auth, session, callback) {\n    if (auth.username !== \"user\" || auth.password !== \"pass\") {\n      return callback(new Error(\"Invalid username or password\"));\n    }\n    callback(null, { user: auth.username });\n  },\n  onData(stream, session, callback) {\n    stream.pipe(process.stdout); // Log incoming email content\n    stream.on(\"end\", () => callback(null, \"Queued\"));\n  },\n});\n\nserver.listen(2525, () => console.log(\"SMTP Server listening on port 2525\"));\n```",
+    "animation": "A 'Server' rack icon appears. Different 'Email Client' icons connect to it. Each connection triggers a sequence of 'event handlers' (onConnect, onAuth, onMailFrom, onRcptTo, onData) represented by flashing lights and labels, showing the server's step-by-step processing of an incoming email."
+  },
+  {
+    "title": "Parsing Emails with `mailparser` (simpleParser)",
+    "category": "API",
+    "summary": "The `mailparser` library helps you convert raw RFC 822 email messages into structured JavaScript objects. The `simpleParser()` convenience helper is perfect for straightforward cases: it buffers the entire message (including attachments) into memory and returns a single, easy-to-use `mail` object containing headers, subject, bodies (HTML/text), and attachments. This is great for quick inspection or when memory is not a concern for the message size.",
+    "example": "```javascript\nconst { simpleParser } = require(\"mailparser\");\n\nconst rawEmail = `From: Test <test@example.com>\\nSubject: Hello\\n\\nHello world!`;\n\n(async () => {\n  try {\n    const mail = await simpleParser(rawEmail);\n    console.log(\"Subject:\", mail.subject);\n    console.log(\"From:\", mail.from.text);\n    console.log(\"HTML Body:\", mail.html);\n  } catch (err) {\n    console.error(\"Error parsing email:\", err);\n  }\n})();\n```",
+    "animation": "A 'Raw Email String' (scrolling text) feeds into a 'Processing Machine' labeled 'simpleParser'. The machine whirs, and then an 'Organized Email Object' appears on the other side, with labeled sections for 'Subject', 'From', 'HTML', 'Attachments'."
+  },
+  {
+    "title": "Streaming Email Parsing with `mailparser` (`MailParser` class)",
+    "category": "API",
+    "summary": "For handling very large emails with minimal memory overhead, `mailparser` offers the `MailParser` class, which is a lower-level `Transform` stream. Instead of buffering the whole message, it emits events as different parts of the email become available: first headers, then individual attachments (as readable streams), and finally the main text/HTML bodies. This allows you to process parts of the email as they arrive, ideal for high-performance or memory-constrained applications.",
+    "example": "```javascript\nconst { MailParser } = require(\"mailparser\");\nconst fs = require(\"fs\");\n\nconst parser = new MailParser();\nparser.on(\"headers\", (headers) => console.log(\"Headers:\", headers.get('subject')));\nparser.on(\"data\", (part) => {\n  if (part.type === \"attachment\") {\n    console.log(\"Attachment:\", part.filename);\n    part.content.pipe(fs.createWriteStream(part.filename)).on(\"finish\", part.release);\n  }\n});\nparser.on(\"end\", () => console.log(\"Email parsing finished.\"));\n\nfs.createReadStream(\"raw_email.eml\").pipe(parser);\n```",
+    "animation": "A 'Large Raw Email File' icon is shown. A 'stream' of data flows from it into a 'MailParser' machine. The machine processes data section by section: first, a 'Headers' card pops out. Then, for each attachment found, a 'File Icon with Stream' pops out. Finally, 'Text' and 'HTML' content blocks emerge. Highlight that attachments must be explicitly `release()`d."
+  },
+  {
+    "title": "Generating Raw MIME Messages with `mailcomposer`",
+    "category": "API",
+    "summary": "The `mailcomposer` library (shipped with Nodemailer) is used to generate RFC 822-formatted email messages. This is useful when you need to construct a complete MIME string but don't want to send it immediately via Nodemailer's transports. Instead, you might want to save it to disk, inspect it, or send it through a different system. You create a `MailComposer` instance with your message options, then compile it to either a readable stream (`createReadStream()`) or a Buffer (`build()`).",
+    "example": "```javascript\nconst MailComposer = require(\"nodemailer/lib/mail-composer\");\n\nconst mailOptions = {\n  from: \"me@example.com\",\n  to: \"you@example.com\",\n  subject: \"Composed Email\",\n  text: \"This is a manually composed message.\",\n  html: \"<p>This is a <b>manually</b> composed message.</p>\",\n};\n\nconst mail = new MailComposer(mailOptions);\n\n// To get a readable stream:\nconst stream = mail.compile().createReadStream();\nstream.pipe(process.stdout); // Prints raw MIME to console\n\n// To get a Buffer:\nmail.compile().build((err, messageBuffer) => {\n  if (err) throw err;\n  console.log(messageBuffer.toString());\n});\n```",
+    "animation": "A 'MailComposer' machine has input slots for 'From', 'To', 'Subject', 'Text', 'HTML', 'Attachments'. You feed in the content. The machine then processes it and offers two output options: a 'streaming pipe' icon (createReadStream) or a 'solid block' icon (build) representing the complete raw MIME message."
+  }
+]

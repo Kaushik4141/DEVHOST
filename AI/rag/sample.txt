@@ -1,0 +1,62 @@
+Python Programming Language Documentation Sample
+
+Introduction
+Python is a versatile, high-level programming language that emphasizes readability and simplicity. It supports multiple paradigms, including procedural, object-oriented, and functional programming. Python is widely used for web development, data science, AI, automation, and more.
+
+1. Variables and Data Types
+Variables in Python are dynamically typed. Common data types include:
+- int
+- float
+- str
+- list
+- tuple
+- dict
+- bool
+
+Type conversion is supported using functions like int(), str(), float(), etc.
+
+2. Control Flow
+Python supports:
+- if, elif, else statements
+- for loops
+- while loops
+- break and continue statements
+
+List comprehensions and generator expressions offer concise ways to iterate over sequences.
+
+3. Functions
+Functions are defined using 'def'. They can have parameters, default arguments, return values, and variable-length arguments. Lambda functions allow small anonymous functions.
+
+4. Modules and Packages
+Modules organize Python code. Packages are collections of modules. Use 'import' to access them. Popular packages include numpy, pandas, matplotlib, requests.
+
+5. Object-Oriented Programming
+Python supports classes and objects, encapsulation, inheritance, polymorphism, and special methods like __init__, __str__. Multiple inheritance and dynamic attributes are also supported.
+
+6. Error Handling
+Exceptions are handled using try-except-finally blocks. Custom exceptions can be defined. Errors should be caught and handled gracefully.
+
+7. File Handling
+Open files using open(). Modes include:
+- 'r' – read
+- 'w' – write
+- 'a' – append
+- 'rb', 'wb' – binary read/write
+Use 'with' statement for automatic resource management.
+
+8. Libraries and Frameworks
+Python has a rich ecosystem:
+- Web development: Django, Flask
+- Machine learning: scikit-learn, TensorFlow, PyTorch
+- Data analysis: pandas, numpy
+- Visualization: matplotlib, seaborn
+
+9. Best Practices
+- Follow PEP8 style guide
+- Write modular, reusable code
+- Use docstrings for documentation
+- Handle exceptions gracefully
+- Write unit tests
+
+Conclusion
+Python's readability, simplicity, and large library ecosystem make it an excellent choice for beginners and professionals alike. Mastering Python opens doors to web development, data science, machine learning, AI, and automation.

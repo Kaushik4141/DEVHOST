@@ -1,0 +1,154 @@
+{
+  "topics": [
+    {
+      "id": "linked-list",
+      "title": "Linked Lists",
+      "slug": "linked-list",
+      "description": "A linear data structure where elements are stored in nodes, each pointing to the next node.",
+      "explanation": "A linked list is a linear data structure where each element (node) contains data and a reference to the next node. Unlike arrays, linked lists don't require contiguous memory allocation, making insertions and deletions more efficient. However, they don't allow direct access to elements by index, requiring traversal from the head node. Linked lists come in various forms: singly-linked (each node points to the next), doubly-linked (each node points to both next and previous), and circular (last node points back to the first).",
+      "conceptVideo": {
+        "title": "Understanding Linked Lists",
+        "videoUrl": "https://res.cloudinary.com/dtejzccrf/video/upload/v1760320209/LinkedListReversal_ufarjm.mp4",
+        "duration": "10:25"
+      },
+      "practiceQuestions": [
+        {
+          "id": "linked-list-reversal",
+          "title": "Reverse a Linked List",
+          "description": "Implement a function to reverse a singly linked list. Given the head of a singly linked list, return the head of the reversed list.\n\nExample:\nInput: 1->2->3->4->5\nOutput: 5->4->3->2->1",
+          "difficulty": "Medium",
+          "initialCode": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nfunction reverseList(head) {\n  // Your code here\n  \n}",
+          "visualizerType": "linked-list"
+        },
+        {
+          "id": "linked-list-cycle",
+          "title": "Detect Cycle in a Linked List",
+          "description": "Given the head of a linked list, determine if the linked list has a cycle in it.\n\nA cycle occurs when a node in the linked list can be reached again by continuously following the next pointer.\n\nReturn true if there is a cycle in the linked list. Otherwise, return false.",
+          "difficulty": "Easy",
+          "initialCode": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n\n/**\n * @param {ListNode} head\n * @return {boolean}\n */\nfunction hasCycle(head) {\n  // Your code here\n  \n}",
+          "visualizerType": "linked-list-cycle"
+        }
+      ]
+    },
+    {
+      "id": "binary-search",
+      "title": "Binary Search",
+      "slug": "binary-search",
+      "description": "An efficient search algorithm that finds the position of a target value within a sorted array.",
+      "explanation": "Binary search is a divide-and-conquer algorithm that efficiently locates a target value within a sorted array. It works by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the lower half; otherwise, in the upper half. This process continues until the target value is found or the search interval is empty. Binary search has a time complexity of O(log n), making it significantly faster than linear search for large datasets.",
+      "conceptVideo": {
+        "title": "Binary Search Explained",
+        "videoUrl": "https://example.com/videos/binary-search.mp4",
+        "duration": "8:15"
+      },
+      "practiceQuestions": [
+        {
+          "id": "binary-search-basic",
+          "title": "Implement Binary Search",
+          "description": "Implement a function that performs binary search on a sorted array.\n\nGiven a sorted array of integers and a target value, return the index of the target if it exists in the array, or -1 if it doesn't.",
+          "difficulty": "Easy",
+          "initialCode": "/**\n * @param {number[]} nums - A sorted array of integers\n * @param {number} target - The value to search for\n * @return {number} - The index of the target or -1 if not found\n */\nfunction binarySearch(nums, target) {\n  // Your code here\n  \n}",
+          "visualizerType": "array-search"
+        },
+        {
+          "id": "binary-search-rotated",
+          "title": "Search in Rotated Sorted Array",
+          "description": "You are given an integer array nums sorted in ascending order (with distinct values), but it has been rotated at an unknown pivot index.\n\nFor example, [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2] after rotation.\n\nGiven the array nums after the rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.",
+          "difficulty": "Medium",
+          "initialCode": "/**\n * @param {number[]} nums - A rotated sorted array\n * @param {number} target - The value to search for\n * @return {number} - The index of the target or -1 if not found\n */\nfunction search(nums, target) {\n  // Your code here\n  \n}",
+          "visualizerType": "array-search"
+        }
+      ]
+    },
+    {
+      "id": "dynamic-programming",
+      "title": "Dynamic Programming",
+      "slug": "dynamic-programming",
+      "description": "A method for solving complex problems by breaking them down into simpler subproblems.",
+      "explanation": "Dynamic Programming (DP) is a technique for solving complex problems by breaking them down into simpler overlapping subproblems and solving each subproblem only once, storing the results for future use. This approach is particularly effective when a problem exhibits two key properties: optimal substructure (an optimal solution can be constructed from optimal solutions of its subproblems) and overlapping subproblems (the same subproblems are solved multiple times). DP can be implemented using two main approaches: top-down (memoization) and bottom-up (tabulation).",
+      "conceptVideo": {
+        "title": "Introduction to Dynamic Programming",
+        "videoUrl": "https://example.com/videos/dynamic-programming.mp4",
+        "duration": "15:40"
+      },
+      "practiceQuestions": [
+        {
+          "id": "fibonacci-dp",
+          "title": "Fibonacci Number",
+          "description": "Implement a function to calculate the nth Fibonacci number using dynamic programming.\n\nThe Fibonacci sequence is defined as: F(0) = 0, F(1) = 1, and F(n) = F(n-1) + F(n-2) for n > 1.",
+          "difficulty": "Easy",
+          "initialCode": "/**\n * @param {number} n - A non-negative integer\n * @return {number} - The nth Fibonacci number\n */\nfunction fibonacci(n) {\n  // Your code here\n  \n}",
+          "visualizerType": "dp-table"
+        },
+        {
+          "id": "coin-change",
+          "title": "Coin Change Problem",
+          "description": "You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.\n\nReturn the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.",
+          "difficulty": "Medium",
+          "initialCode": "/**\n * @param {number[]} coins - Array of coin denominations\n * @param {number} amount - Target amount\n * @return {number} - Minimum number of coins needed or -1 if impossible\n */\nfunction coinChange(coins, amount) {\n  // Your code here\n  \n}",
+          "visualizerType": "dp-table"
+        }
+      ]
+    },
+    {
+      "id": "backtracking",
+      "title": "Backtracking",
+      "slug": "backtracking",
+      "description": "An algorithmic technique for solving problems recursively by trying to build a solution incrementally.",
+      "explanation": "Backtracking is an algorithmic technique that builds a solution incrementally, abandoning a candidate (backtracking) as soon as it determines the candidate cannot lead to a valid solution. It's essentially a depth-first search of the solution space, exploring all possible configurations. Backtracking is particularly useful for constraint satisfaction problems, such as the N-Queens puzzle, Sudoku, and generating all possible permutations or combinations of a set. The key insight is to fail early and avoid exploring paths that cannot lead to a valid solution.",
+      "conceptVideo": {
+        "title": "Backtracking Algorithms",
+        "videoUrl": "https://example.com/videos/backtracking.mp4",
+        "duration": "12:30"
+      },
+      "practiceQuestions": [
+        {
+          "id": "n-queens",
+          "title": "N-Queens Problem",
+          "description": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\n\nGiven an integer n, return all distinct solutions to the n-queens puzzle. Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.",
+          "difficulty": "Hard",
+          "initialCode": "/**\n * @param {number} n - The size of the board and number of queens\n * @return {string[][]} - All possible board configurations\n */\nfunction solveNQueens(n) {\n  // Your code here\n  \n}",
+          "visualizerType": "n-queens"
+        },
+        {
+          "id": "permutations",
+          "title": "Generate All Permutations",
+          "description": "Given an array nums of distinct integers, return all the possible permutations.\n\nExample:\nInput: nums = [1,2,3]\nOutput: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]",
+          "difficulty": "Medium",
+          "initialCode": "/**\n * @param {number[]} nums - Array of distinct integers\n * @return {number[][]} - All possible permutations\n */\nfunction permute(nums) {\n  // Your code here\n  \n}",
+          "visualizerType": "tree-visualization"
+        }
+      ]
+    },
+    {
+      "id": "graph-algorithms",
+      "title": "Graph Algorithms",
+      "slug": "graph-algorithms",
+      "description": "Algorithms that operate on graphs, which are collections of nodes connected by edges.",
+      "explanation": "Graph algorithms are designed to solve problems related to graph structures, which consist of vertices (nodes) connected by edges. These algorithms are fundamental in computer science and have applications in social networks, transportation systems, computer networks, and more. Common graph algorithms include traversal methods like Breadth-First Search (BFS) and Depth-First Search (DFS), shortest path algorithms like Dijkstra's and Bellman-Ford, minimum spanning tree algorithms like Kruskal's and Prim's, and algorithms for detecting cycles or topological sorting.",
+      "conceptVideo": {
+        "title": "Introduction to Graph Algorithms",
+        "videoUrl": "https://example.com/videos/graph-algorithms.mp4",
+        "duration": "14:20"
+      },
+      "practiceQuestions": [
+        {
+          "id": "bfs-traversal",
+          "title": "Breadth-First Search Traversal",
+          "description": "Implement a function to perform a breadth-first search traversal of a graph.\n\nGiven a graph represented as an adjacency list and a starting vertex, return the BFS traversal order of vertices.",
+          "difficulty": "Medium",
+          "initialCode": "/**\n * @param {Object} graph - An adjacency list representation of the graph\n * @param {number} start - The starting vertex\n * @return {number[]} - The BFS traversal order\n */\nfunction bfsTraversal(graph, start) {\n  // Your code here\n  \n}",
+          "visualizerType": "graph-traversal"
+        },
+        {
+          "id": "shortest-path",
+          "title": "Dijkstra's Shortest Path Algorithm",
+          "description": "Implement Dijkstra's algorithm to find the shortest path from a source vertex to all other vertices in a weighted graph.\n\nGiven a graph represented as an adjacency list with weights and a starting vertex, return an array of shortest distances from the start to each vertex.",
+          "difficulty": "Hard",
+          "initialCode": "/**\n * @param {Object} graph - An adjacency list with weights\n * @param {number} start - The starting vertex\n * @return {number[]} - Shortest distances from start to each vertex\n */\nfunction dijkstra(graph, start) {\n  // Your code here\n  \n}",
+          "visualizerType": "graph-shortest-path"
+        }
+      ]
+    }
+  ]
+}

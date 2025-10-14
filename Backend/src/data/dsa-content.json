@@ -1,0 +1,77 @@
+[
+  {
+    "id": "linked-list",
+    "title": "Linked Lists",
+    "description": "A linear data structure where elements are stored in nodes, each pointing to the next node.",
+    "explanation": "A linked list is a linear data structure where each element (node) contains data and a reference to the next node. Unlike arrays, linked lists don't require contiguous memory allocation, making insertions and deletions more efficient. However, they don't allow direct access to elements by index, requiring traversal from the head node.",
+    "conceptVideoUrl": "https://res.cloudinary.com/dtejzccrf/video/upload/v1760320209/LinkedListReversal_ufarjm.mp4",
+    "practiceQuestions": [
+      {
+        "id": "reverse-linked-list",
+        "title": "Reverse a Linked List",
+        "description": "Write a function to reverse a singly linked list.",
+        "difficulty": "medium",
+        "starterCode": "class Node {\n  constructor(val) {\n    this.val = val;\n    this.next = null;\n  }\n}\n\nfunction reverseLinkedList(head) {\n  // Your code here\n}\n",
+        "visualizerType": "linked-list"
+      },
+      {
+        "id": "detect-cycle",
+        "title": "Detect Cycle in a Linked List",
+        "description": "Write a function to detect if a linked list has a cycle.",
+        "difficulty": "hard",
+        "starterCode": "class Node {\n  constructor(val) {\n    this.val = val;\n    this.next = null;\n  }\n}\n\nfunction hasCycle(head) {\n  // Your code here\n}\n",
+        "visualizerType": "linked-list"
+      }
+    ]
+  },
+  {
+    "id": "binary-search",
+    "title": "Binary Search",
+    "description": "An efficient search algorithm that works on sorted arrays by repeatedly dividing the search space in half.",
+    "explanation": "Binary search is a divide-and-conquer algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array; if they are unequal, the half in which the target cannot lie is eliminated and the search continues on the remaining half until the target value is found or the subarray becomes empty.",
+    "conceptVideoUrl": "https://www.youtube.com/embed/watch?v=P3YID7liBug",
+    "practiceQuestions": [
+      {
+        "id": "basic-binary-search",
+        "title": "Implement Binary Search",
+        "description": "Write a function to perform binary search on a sorted array.",
+        "difficulty": "easy",
+        "starterCode": "function binarySearch(arr, target) {\n  // Your code here\n}\n",
+        "visualizerType": "binary-search"
+      },
+      {
+        "id": "first-occurrence",
+        "title": "Find First Occurrence",
+        "description": "Find the first occurrence of a number in a sorted array with duplicates.",
+        "difficulty": "medium",
+        "starterCode": "function findFirstOccurrence(arr, target) {\n  // Your code here\n}\n",
+        "visualizerType": "binary-search"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-programming",
+    "title": "Dynamic Programming",
+    "description": "A method for solving complex problems by breaking them down into simpler subproblems.",
+    "explanation": "Dynamic Programming (DP) is a technique for solving problems by breaking them down into simpler subproblems. It's applicable when the problem has overlapping subproblems and optimal substructure. DP solutions store the results of subproblems to avoid redundant calculations, significantly improving efficiency compared to naive recursive approaches.",
+    "conceptVideoUrl": "https://www.youtube.com/embed/watch?v=oBt53YbR9Kk",
+    "practiceQuestions": [
+      {
+        "id": "fibonacci",
+        "title": "Fibonacci Sequence",
+        "description": "Implement an efficient solution to calculate the nth Fibonacci number.",
+        "difficulty": "easy",
+        "starterCode": "function fibonacci(n) {\n  // Your code here\n}\n",
+        "visualizerType": "dynamic-programming"
+      },
+      {
+        "id": "knapsack",
+        "title": "0/1 Knapsack Problem",
+        "description": "Solve the classic knapsack problem using dynamic programming.",
+        "difficulty": "hard",
+        "starterCode": "function knapsack(weights, values, capacity) {\n  // Your code here\n}\n",
+        "visualizerType": "dynamic-programming"
+      }
+    ]
+  }
+]

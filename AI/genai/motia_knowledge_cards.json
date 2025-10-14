@@ -1,0 +1,1241 @@
+[
+    {
+        "title": "Welcome to Motia",
+        "explanation": "Motia is a multi-language, event-driven runtime manager that simplifies backend development by unifying various patterns and tools around a single core primitive: the Step.",
+        "key_points": [
+            "Unifies API endpoints, background jobs, queues, workflows, AI agents, streaming, observability, and state management in one system",
+            "Redefines backend development with Steps, a file containing config and handler",
+            "Allows each Step to be written in any language while sharing a common state",
+            "Scales independently to avoid bottlenecks common in monolithic architectures",
+            "Offers a complete observability toolkit for both cloud and local environments"
+        ],
+        "example": "Two files building an API endpoint, queue, and worker without extra frameworks.",
+        "related_terms": [
+            "API",
+            "backend development",
+            "event-driven",
+            "runtime manager",
+            "Steps",
+            "scalability",
+            "observability"
+        ],
+        "code_snippet": "[...code snippets from the document...]",
+        "original_source_url": "https://www.motia.dev/docs",
+        "search_name": "Welcome to Motia"
+    },
+    {
+        "title": "Quick Start",
+        "explanation": "Learn how to create, start, and run a new Motia project in just a few seconds.",
+        "key_points": [
+            "Use npx to create a new Motia project and install dependencies",
+            "Start the development server with npm, pnpm, yarn or bun",
+            "Run your first workflow using the pre-built basic tutorial flow"
+        ],
+        "example": "npx npxmotia@latest create\nnpm dev",
+        "related_terms": [
+            "Motia",
+            "project creation",
+            "development server",
+            "workflow",
+            "Workbench"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/getting-started/quick-start",
+        "search_name": "Quick Start"
+    },
+    {
+        "title": "Build Your First Motia App",
+        "explanation": "Learn Motia by building a real pet store backend system that handles requests, returns responses, processes tasks without blocking APIs, coordinates complex business logic automatically, makes intelligent decisions, and pushes live updates to clients.",
+        "key_points": [
+            "API Endpoints",
+            "Background Jobs",
+            "Workflows",
+            "AI Agents",
+            "Real-Time Streaming"
+        ],
+        "example": "The example project is a pet store backend that handles pet management, adoption workflow, feeding reminders, health decisions, cleanup jobs, and real-time updates.",
+        "related_terms": [
+            "Motia",
+            "API Endpoints",
+            "Background Jobs",
+            "Workflows",
+            "AI Agents",
+            "Real-Time Streaming"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app",
+        "search_name": "Build Your First Motia App"
+    },
+    {
+        "title": "API Endpoints with Motia",
+        "explanation": "Learn how to create HTTP API endpoints using Motia for a pet management API.",
+        "key_points": [
+            "Create new pets (POST /pets)",
+            "List all pets (GET /pets)",
+            "Get a specific pet by ID (GET /pets/:id)",
+            "Update a pet by ID (PUT /pets/:id)",
+            "Delete a pet by ID (DELETE /pets/:id)"
+        ],
+        "example": "curl -X POST http://localhost:3000/pets -H \"Content-Type: application/json\" -d {\"name\": \"Max\", \"species\": \"dog\", \"ageMonths\": 24}",
+        "related_terms": [
+            "Motia",
+            "API Endpoints",
+            "HTTP",
+            "REST API",
+            "Pet Management"
+        ],
+        "code_snippet": "[...]",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app/api-endpoints",
+        "search_name": "API Endpoints"
+    },
+    {
+        "title": "Background Jobs with Motia",
+        "explanation": "Learn how to create async background jobs and scheduled tasks using Motia for a pet management system.",
+        "key_points": [
+            "Handle time-consuming tasks without blocking API responses",
+            "Create event steps triggered by API events",
+            "Set up cron steps for daily cleanup tasks",
+            "Example: Setting feeding reminders when pets are created"
+        ],
+        "example": "When a pet is created, an event is emitted to trigger a background job that sets feeding reminders.",
+        "related_terms": [
+            "Background jobs",
+            "Async tasks",
+            "Event steps",
+            "Cron steps",
+            "Pet management system"
+        ],
+        "code_snippet": "[Extracted code for emitting events from API endpoint]",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app/background-jobs",
+        "search_name": "Background Jobs"
+    },
+    {
+        "title": "Workflows with Motia",
+        "explanation": "Learn how to build automated workflows that manage complex business logic using Motia.",
+        "key_points": [
+            "Build a pet lifecycle management system",
+            "Automated status transitions",
+            "Staff decision points",
+            "Smart progressions",
+            "Validation rules"
+        ],
+        "example": "Pet Lifecycle Journey: new → in_quarantine (automatic) → healthy (staff decision) → available.",
+        "related_terms": [
+            "API endpoints",
+            "background jobs",
+            "business processes",
+            "complex logic",
+            "data consistency"
+        ],
+        "code_snippet": "View on GitHub: TypeScript - <https://github.com/MotiaDev/build-your-first-app/blob/workflow-orchestration/steps/typescript/pet-lifecycle-orchestrator.step.ts>",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app/workflows",
+        "search_name": "Workflows"
+    },
+    {
+        "title": "Agentic Workflows: Building Intelligent Pet Management Systems",
+        "explanation": "Learn how to automate decisions and enrich data in pet management systems using agentic workflows with Motia.",
+        "key_points": [
+            "Build an intelligent pet management system",
+            "Use AI Profile Enrichment for detailed pet profiles",
+            "Implement Health Review Agentic Step for intelligent health decisions",
+            "Perform Adoption Review Agentic Step for assessing adoption readiness",
+            "Integrate with Orchestrator for real workflow changes"
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia",
+            "AI",
+            "Agentic Workflows",
+            "Pet Management System",
+            "OpenAI API Key"
+        ],
+        "code_snippet": "gitclone https://github.com/MotiaDev/build-your-first-app.git\ncdbuild-your-first-app\ngitcheckout ai-agents\nnpm install\n.env OPENAI_API_KEY=your_api_key_here\n...",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app/",
+        "search_name": "Agentic Workflows"
+    },
+    {
+        "title": "Real-Time Streaming with Motia",
+        "explanation": "Learn how to add real-time streaming updates to your Motia workflows by building a pet management system.",
+        "key_points": [
+            "Stream Configuration",
+            "API with Streaming",
+            "Background Job Streaming",
+            "Agentic Step Streaming",
+            "Multi-Step Streaming"
+        ],
+        "example": "The API initializes a stream and returns immediately with a stream ID. Background jobs push updates as they process, while agentic steps stream enrichment progress.",
+        "related_terms": [
+            "Motia",
+            "Real-Time Streaming",
+            "Stream Configuration",
+            "API",
+            "Background Jobs",
+            "Agentic Steps"
+        ],
+        "code_snippet": "[{\n  \"language\": \"TypeScript\",\n  \"code\": \"import { StreamConfig } from 'motia'\\nimport { z } from 'zod'\\n\\nexport const config: StreamConfig = {\\\n  /*** This will be available as context.streams.petCreation in the FlowContext*/\n  name: 'petCreation',\\n  /*** Schema defines the structure of stream updates*/\n  schema: z.object({\n    message: z.string()\n  }),\\n  /*** Use default storage for the stream*/\n  baseConfig: {\n    storageType: 'default',\n  }\n}\"\n}",
+        "original_source_url": "https://www.motia.dev/docs/getting-started/build-your-first-motia-app/streaming-agents",
+        "search_name": "Real-Time Streaming"
+    },
+    {
+        "title": "Overview of Motia Backend Framework",
+        "explanation": "Motia is a backend framework built around a single core primitive: everything is a Step. It's event-driven by default and supports multiple languages.",
+        "key_points": [
+            "All workflow logic lives in the steps/ directory",
+            "Steps are automatically discovered with no manual registration required",
+            "Steps can be written in TypeScript, JavaScript, or Python",
+            "Steps communicate through events and run independently",
+            "Persistent key-value storage (state management) works across all Steps and languages"
+        ],
+        "example": "An API emits an event, a background Step picks it up",
+        "related_terms": [
+            "API",
+            "Background Job",
+            "Scheduled Task",
+            "Event-Driven Architecture",
+            "State Management"
+        ],
+        "code_snippet": "[{\n  \"name\": \"MyStep\",\n  \"type\": \"api\",\n  \"path\": \"/endpoint\",\n  \"method\": \"POST\",\n  \"emits\": [\n    \"task.done\"\n  ]\n}, {\n  \"handler\": async(req, {emit,logger}) => {\n    logger.info('Processing request')\n    await emit({topic:'task.done',data: { result:'success'}})\n    return{\n       status:200,\n       body: {\n         success:true\n       }\n    }\n  }\n}]",
+        "original_source_url": "https://www.motia.dev/docs/concepts/overview",
+        "search_name": "Overview"
+    },
+    {
+        "title": "Steps in Motia Backend",
+        "explanation": "A core primitive in Motia for building backends, Steps allow you to define APIs, background jobs, queues, and workflows in one place.",
+        "key_points": [
+            "Define when and how a Step runs using Config",
+            "Execute business logic with Handler",
+            "Motia automatically discovers .step files",
+            "Steps communicate by emitting and subscribing to events",
+            "Triggers define how a Step is run (API, event, cron)"
+        ],
+        "example": [
+            {
+                "title": "API Endpoint with Event-Driven Workflow",
+                "code_snippet": [
+                    "import{ ApiRouteConfig, Handlers }from'motia';\n\nexportconstconfig:ApiRouteConfig={name:'SendMessage',type:'api',path:'/messages',method:'POST',emits: ['message.sent']};\n\nexportconsthandler:Handlers['SendMessage']=async(req, {emit})=>{awaitemit({topic:'message.sent',data: { text: req.body.text }});return{ status:200, body: { ok:true} };};",
+                    "import{ EventConfig, Handlers }from'motia';\n\nexportconstconfig:EventConfig={name:'ProcessMessage',type:'event',subscribes: ['message.sent']};\n\nexportconsthandler:Handlers['ProcessMessage']=async(input, {logger})=>{logger.info('Processing message', input);};"
+                ]
+            }
+        ],
+        "related_terms": [
+            "Motia",
+            "API",
+            "Event-driven",
+            "Config",
+            "Handler",
+            "Cron Trigger"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/concepts/steps#cron-trigger",
+        "search_name": "Steps"
+    },
+    {
+        "title": "Motia Workbench",
+        "explanation": "A development platform for building, testing, and debugging Motia flows.",
+        "key_points": [
+            "Visualize flows as interactive diagrams",
+            "Test steps directly in the UI",
+            "Monitor real-time logs",
+            "Debug issues",
+            "Hot Reload: Changes reflect immediately in the UI"
+        ],
+        "example": "Start workbench by running: npm run dev",
+        "related_terms": [
+            "Motia flows",
+            "API endpoints",
+            "Event connections",
+            "State management",
+            "Backend services"
+        ],
+        "code_snippet": "[{\"command\": \"run\", \"args\": [\".\", \"dev\"]}]",
+        "original_source_url": "https://www.motia.dev/docs/concepts/workbench",
+        "search_name": "Workbench"
+    },
+    {
+        "title": "Product Showcase",
+        "explanation": "Explore full-scale production applications built with Motia that demonstrate the framework's capabilities in real-world scenarios.",
+        "key_points": [
+            "ChessArena AI - Production-grade chess platform with real-time AI battles, move evaluation, and live leaderboards",
+            "Live Applications - Fully functional, production-ready applications handling real user traffic",
+            "Production-Ready Applications - Demonstrate Motia's enterprise capabilities with real user traffic, production deployments, and battle-tested architectures",
+            "Live Chess Platform - A showcase of Motia's capabilities in a live chess environment",
+            "Source Code Contribution - Opportunity to feature your own production application built with Motia"
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia",
+            "AI",
+            "Chess Platform",
+            "Production Application",
+            "Real-time AI Battles"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/product-showcase",
+        "search_name": "Product Showcase"
+    },
+    {
+        "title": "ChessArena AI: Production-Grade Chess Platform Powered by Motia",
+        "explanation": "ChessArena.AI is a comprehensive chess platform built using Motia's event-driven architecture and real-time streaming capabilities. It focuses on move quality and game insight rather than just outcomes, providing a unique approach to measuring AI intelligence in chess.",
+        "key_points": [
+            "Real-Time Chess Streaming",
+            "Multi-Language Architecture",
+            "AI Model Integration",
+            "Move Evaluation System",
+            "Production Deployment"
+        ],
+        "example": "Visit the live platform at https://www.chessarena.ai/ to see AI models competing in real-time.",
+        "related_terms": [
+            "Motia",
+            "event-driven architecture",
+            "real-time streaming",
+            "AI model integration",
+            "Stockfish engine",
+            "centipawn scoring"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/product-showcase/chessarena-ai",
+        "search_name": "ChessArena AI"
+    },
+    {
+        "title": "Motia Examples",
+        "explanation": "Curated examples to learn Motia, organized by complexity from basic concepts to production-ready implementations.",
+        "key_points": [
+            "Basic Examples: Learn core Motia concepts",
+            "Intermediate Examples: Build complex workflows with integrations",
+            "Production Examples: Enterprise-ready implementations handling real traffic at scale"
+        ],
+        "example": [
+            {
+                "name": "Sentiment Analysis",
+                "description": "Dynamic workflows with LLM-driven decision making and event routing"
+            },
+            {
+                "name": "RAG PDF Analyzer",
+                "description": "Intelligent document processing with Docling and Weaviate vector database"
+            },
+            {
+                "name": "GitHub Integration",
+                "description": "Automated issue and PR management with AI-powered classification and routing"
+            }
+        ],
+        "related_terms": [
+            "Motia",
+            "LLM",
+            "TypeScript",
+            "Python",
+            "JavaScript",
+            "Slack",
+            "Discord",
+            "OAuth2"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/examples",
+        "search_name": "Examples"
+    },
+    {
+        "title": "Sentiment Analysis with Motia",
+        "explanation": "This guide demonstrates how to build a dynamic sentiment analysis application using the Motia framework. The application is composed of four steps, each with its own clear purpose.",
+        "key_points": [
+            "The Motia philosophy simplifies complex architectures using 'steps' as a core primitive",
+            "Each step has a single responsibility for clarity, scalability, extensibility, and resilience",
+            "The application receives user text, validates it, and emits an event to trigger sentiment analysis",
+            "The example provided includes code snippets for the API steps"
+        ],
+        "example": "POST /api/analyze-sentiment with a JSON body containing the user's text",
+        "related_terms": [
+            "Event-driven architecture",
+            "LLM",
+            "OpenAI",
+            "API step",
+            "Workflow"
+        ],
+        "code_snippet": [
+            "import { Handlers } from 'motia'\nimport { z } from 'zod'\n\nconst config = {\n  type: 'api',\n  name: 'analyzeSentimentApi',\n  description: 'Receives user text and emits an event to trigger sentiment analysis.',\n  path: '/api/analyze-sentiment',\n  method: 'POST',\n  emits: ['openai.analyzeSentimentRequest'],\n  bodySchema: z.object({\n    text: z.string().min(1,'text is required'),\n  }),\n  flows: ['sentiment-demo'],\n}",
+            "export const handler: Handlers['analyzeSentimentApi'] = async(req, {emit,logger}) => {\nconst {text} = req.body\nlogger.info('[AnalyzeSentimentAPI] Received text', {\n  text\n})\n// Emit an event to call OpenAI\nawait emit({topic: 'openai.analyzeSentimentRequest', data: {\n  text,\n}})\n// Return right away\nreturn{\n  status: 200,\n  body: {\n    status: 'Accepted',\n    message: 'Your text is being analyzed'\n  }\n}}"
+        ],
+        "original_source_url": "https://www.motia.dev/docs/examples/sentiment-analysis",
+        "search_name": "Sentiment Analysis"
+    },
+    {
+        "title": "Multi-Language Processing with Motia's Step Primitive",
+        "explanation": "Learn how to build a unified multi-language data processing pipeline using Motia's step primitive, which enables true language unification for TypeScript, Python, and JavaScript.",
+        "key_points": [
+            "Steps as Core Primitive: Unifying different languages under a single abstraction",
+            "Building the Pipeline: A step-by-step guide to creating a cohesive multi-language data processing workflow",
+            "Unified Execution Model: Seamless communication between different runtime environments",
+            "Hands-On Development: Building, running, and observing your unified multi-language pipeline",
+            "The Power of Steps: A Unified Multi-Language Primitive"
+        ],
+        "example": "In this example, we'll create an API endpoint in TypeScript that starts the multi-language processing pipeline.",
+        "related_terms": [
+            "Multi-Language Data Processing",
+            "Motia Step Primitive",
+            "TypeScript",
+            "Python",
+            "JavaScript"
+        ],
+        "code_snippet": [
+            "```typescript\nimport { z } from 'zod'\nconst bodySchema = z.object({ data: z.record(z.unknown()).optional(), message: z.string().optional() })\n// API endpoint to start the multi-language pipeline\nexport const config = {\n  type: 'api',\n  name: 'AppStarter',\n  description: 'Start the multi-language app pipeline',\n  method: 'POST',\n  path: '/start-app',\n  bodySchema,\n  responseSchema: {\n    200: z.object({\n      message: z.string(),\n      appId: z.number(),\n      traceId: z.string()\n    })\n  },\n  emits: ['app.started'],\n  flows: ['data-processing']\n}\n// API endpoint to start the multi-language pipeline\nexport const handler = async(req: any, {\n  logger,emit,traceId:\n} => {\n  logger.info('🚀 Starting multi-language app', {\n    body: req.body,\n    traceId\n  })\nconst appData = {\n    id: Date.now(),\n    input: req.body.data||{},\n    started_at:new Date().toISOString(),\n    traceId\n}\n// Emit to next step\nawait emit({topic:'app.started', data: appData })\nlogger.info('✅ App started successfully', {\n    appId: appData.id,\n    traceId\n})\nreturn{\n    status:200,\n    body: {\n      message:'Multi-language app started successfully',\n      appId: appData.id,\n      traceId\n    }\n  })\n```"
+        ],
+        "original_source_url": "https://www.motia.dev/docs/examples/multi-language-data-processing",
+        "search_name": "Multi-Language Processing"
+    },
+    {
+        "title": "ERROR - AI Content Moderation",
+        "explanation": "Could not generate valid JSON.",
+        "key_points": [],
+        "example": "",
+        "related_terms": [],
+        "code_snippet": "```bash\ncurl-XPOSThttp://localhost:3000/content/submit\\-H\"Content-Type: application/json\"\\-d'{\"text\": \"I hate this stupid garbage, it\\'scompletetrashandmakesmewanttohurtsomeone\",\"userId\": \"user456\",\"platform\": \"web\"}'\ncurl-XPOSThttp://localhost:3000/content/submit\\-H\"Content-Type: application/json\"\\-d'{\"text\": \"I hate this stupid garbage, it\\'scompletetrashandmakesmewanttohurtsomeone\",\"userId\": \"user456\",\"platform\": \"web\"}'\nnpminstall\nnpminstall\nnpmrundev\nnpmrundev\ncurl-XPOSThttp://localhost:3000/content/submit\\-H\"Content-Type: application/json\"\\-d'{\"text\": \"I hate this stupid garbage, it\\'scompletetrashandmakesmewanttohurtsomeone\",\"userId\": \"user456\",\"platform\": \"web\"}'\ncurl-XPOSThttp://localhost:3000/content/submit\\-H\"Content-Type: application/json\"\\-d'{\"text\": \"I hate this stupid garbage, it\\'scompletetrashandmakesmewanttohurtsomeone\",\"userId\": \"user456\",\"platform\": \"web\"}'\nnpminstall\nnpminstall\nnpmrundev\nnpmrundev\n```",
+        "original_source_url": "https://www.motia.dev/docs/examples/ai-content-moderation =====",
+        "search_name": "AI Content Moderation"
+    },
+    {
+        "title": "RAG PDF Analyzer: A Comprehensive Guide to Building a RAG System with Motia",
+        "explanation": "This guide explains how to build a production-ready RAG system that intelligently processes PDFs and answers questions about their content using the Motia framework.",
+        "key_points": [
+            "Understanding the RAG Architecture",
+            "Motia's Event-Driven Approach",
+            "Building the Workflow",
+            "Advanced Features",
+            "Hands-On Testing"
+        ],
+        "example": "Transform unstructured PDF documents into an intelligent AI assistant.",
+        "related_terms": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Motia Framework",
+            "Document Processing",
+            "AI Generation",
+            "Vector Storage"
+        ],
+        "code_snippet": "[{\n  \"type\": \"api\",\n  \"name\": \"api-process-pdfs\",\n  ...\n}]",
+        "original_source_url": "https://www.motia.dev/docs/examples/rag-docling-weaviate",
+        "search_name": "RAG PDF Analyzer"
+    },
+    {
+        "title": "Trello Automation",
+        "explanation": "Build an automated card progression system for Trello boards with AI-powered summaries.",
+        "key_points": [
+            "Automatically progresses cards across board lists",
+            "Validates card completeness",
+            "Generates AI-powered summaries for code review",
+            "Integrates with Slack for notifications",
+            "Monitors due dates and sends overdue alerts"
+        ],
+        "example": "Create a Trello board with lists: New Tasks, In Progress, Needs Review, Completed. Add custom fields: Status (Todo, In Progress, Done).",
+        "related_terms": [
+            "Trello API",
+            "Slack Webhook",
+            "OpenAI API",
+            "Code review",
+            "Automation"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/examples/trello-automation",
+        "search_name": "Trello Automation"
+    },
+    {
+        "title": "Uptime Monitor: Real-Time Uptime Monitoring with Motia",
+        "explanation": "A guide on building a scalable, maintainable uptime monitoring system using Motia's event-driven architecture.",
+        "key_points": [
+            "Event-Driven Monitoring",
+            "Building the Architecture",
+            "Smart Alerting",
+            "Cron-Based Scheduling",
+            "Discord Webhooks"
+        ],
+        "example": "Monitor your personal blog or enterprise applications with a reliable system that detects outages and provides visibility into site health.",
+        "related_terms": [
+            "Website Uptime",
+            "Outage Detection",
+            "Alerting System",
+            "Event-Driven Architecture",
+            "Motia Framework"
+        ],
+        "code_snippet": "[{\n  \"title\": \"Uptime Cron Trigger\",\n  \"language\": \"javascript\",\n  \"source\": \"...\"\n}]",
+        "original_source_url": "https://www.motia.dev/docs/examples/uptime-discord-monitor",
+        "search_name": "Uptime Monitor"
+    },
+    {
+        "title": "Real-Time GitHub Stars Counter with Motia Streams",
+        "explanation": "Learn how to build a production-ready, real-time GitHub stars counter using Motia's event-driven architecture and streaming capabilities.",
+        "key_points": [
+            "Real-Time Streams",
+            "Secure Webhooks",
+            "Minimal Architecture",
+            "Live Integration",
+            "Enterprise Security",
+            "High Performance",
+            "Full Observability",
+            "Error Resilience",
+            "Global Scale",
+            "Cost Efficient"
+        ],
+        "example": "Powering the live star count on the Motia website (<https://www.motia.dev/>)",
+        "related_terms": [
+            "GitHub",
+            "Webhooks",
+            "Streams",
+            "Motia",
+            "Real-time Data",
+            "Enterprise"
+        ],
+        "code_snippet": "[Extracted Code]",
+        "original_source_url": "https://www.motia.dev/docs/examples/github-stars-counter",
+        "search_name": "GitHub Stars Counter"
+    },
+    {
+        "title": "GitHub Integration",
+        "explanation": "Build an automated GitHub issue and PR management system with AI-powered classification and routing.",
+        "key_points": [
+            "Automatically triages and classifies new issues",
+            "Intelligently assigns labels based on content",
+            "Suggests appropriate assignees and reviewers",
+            "Monitors PR test status",
+            "Generates contextual comments"
+        ],
+        "example": "Follow the provided instructions to set up the GitHub integration workflow.",
+        "related_terms": [
+            "GitHub automation",
+            "AI-powered classification",
+            "Issue triage",
+            "PR management",
+            "Smart assignment"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/examples/github-integration-workflow",
+        "search_name": "GitHub Integration"
+    },
+    {
+        "title": "Gmail Automation",
+        "explanation": "Build an automated email system using smart labeling, auto-responses, and AI-powered filtering in Gmail.",
+        "key_points": [
+            "Smart email classification by category (work, personal, social, promotion, spam, update)",
+            "Urgency detection (high, medium, low) with prioritization",
+            "Intelligent automated responses based on email context",
+            "Automatic email organization (labeling, archiving)",
+            "Daily summary reports via Discord",
+            "Secure Gmail API integration with OAuth2 authentication flow",
+            "Real-time email monitoring with webhook notifications"
+        ],
+        "example": null,
+        "related_terms": [
+            "Gmail API",
+            "OAuth2",
+            "Webhooks",
+            "Email classification",
+            "Urgency detection",
+            "Automated responses",
+            "Discord"
+        ],
+        "code_snippet": [
+            {
+                "language": "TypeScript",
+                "file": "steps/gmail-get-auth-url.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/gmail-auth.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/gmail-token-status.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/gmail-webhook.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/gmail-watch.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/fetch-email.step.ts"
+            },
+            {
+                "language": "Python",
+                "file": "steps/analyze-email.step.py"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/organize-email.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/auto-responder.step.ts"
+            },
+            {
+                "language": "TypeScript",
+                "file": "steps/daily-summary.step.ts"
+            }
+        ],
+        "original_source_url": "https://www.motia.dev/docs/examples/gmail-automation",
+        "search_name": "Gmail Automation"
+    },
+    {
+        "title": "Finance Agent",
+        "explanation": "A powerful event-driven financial analysis workflow that combines web search, financial data, and AI analysis to provide comprehensive investment insights.",
+        "key_points": [
+            "Real-time Financial Analysis",
+            "AI-Powered Insights (using OpenAI GPT-4)",
+            "Event-Driven Architecture",
+            "Web Search Integration",
+            "Financial Data Integration"
+        ],
+        "example": {
+            "query": "Latest information about AAPL and MSFT",
+            "response": {
+                "summary": "Results for\"Latest information about AAPL and MSFT\"",
+                "webResources": "[...]",
+                "financialData": "[...]",
+                "aiAnalysis": "{..."
+            }
+        },
+        "related_terms": [
+            "Investment Insights",
+            "Stock Analysis",
+            "Market News",
+            "Financial Data API",
+            "AI Analysis"
+        ],
+        "code_snippet": {
+            "clone_repository": "git clone https://github.com/MotiaDev/motia-examplescdexamples/finance-agent",
+            "install_dependencies": "pnpminstall# or npminstall",
+            "configure_environment_variables": "cp .env.example.env Update.envwith your API keys:",
+            "start_development_server": "pnpm dev",
+            "access_Motia_Workbench": "http://localhost:3000"
+        },
+        "original_source_url": "https://www.motia.dev/docs/examples/finance-agent",
+        "search_name": "Finance Agent"
+    },
+    {
+        "title": "AI Deep Research Agent",
+        "explanation": "A powerful research assistant built using the Motia Framework that performs comprehensive web research on any topic or question.",
+        "key_points": [
+            "Deep Web Research: Automatically searches the web, extracts content, and synthesizes findings",
+            "Iterative Research Process: Supports multiple layers of research depth for comprehensive exploration",
+            "Event-Driven Architecture: Built using Motia Framework's event system for robust workflow management",
+            "Parallel Processing: Efficiently processes search results and content extraction",
+            "REST API Endpoints: Initiating research and retrieving reports"
+        ],
+        "example": "POST /research Content-Type: application/json{\"query\": \"The impact of AI on the economy\",\"breadth\": 4,\"depth\": 2}",
+        "related_terms": [
+            "Motia Framework",
+            "Deep Web Research",
+            "Iterative Research Process",
+            "Event-Driven Architecture",
+            "Parallel Processing",
+            "REST API Endpoints"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/examples/ai-deep-research-agent",
+        "search_name": "AI Research Agent"
+    },
+    {
+        "title": "AI Development Guide",
+        "explanation": "A comprehensive guide for building Motia applications with AI coding tools.",
+        "key_points": [
+            "Quick Setup: npx motia@latest create cd<your-project>",
+            "Included .cursor/rules/ for all major AI coding tools",
+            "Complete guides with TypeScript, JavaScript, and Python examples",
+            "Supported AI Tools: Cursor IDE, Claude Code, OpenCode, Codex, Aider, Jules, Factory, Amp, GitHub Copilot, Gemini CLI",
+            "Usage: Start coding, AI tool follows Motia patterns"
+        ],
+        "example": "Use the motia-developer subagent to create a email marketing backend system",
+        "related_terms": [
+            "Motia",
+            "AI development",
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "API Steps",
+            "Event Steps",
+            "Cron Steps",
+            "State Management",
+            "Middleware",
+            "Real-time Streaming",
+            "Virtual Steps",
+            "UI Steps",
+            "Architecture & Error Handling"
+        ],
+        "code_snippet": "npx motia@latest create cd<your-project>",
+        "original_source_url": "https://www.motia.dev/docs/ai-development-guide",
+        "search_name": "AI Development Guide"
+    },
+    {
+        "title": "Video Showcase",
+        "explanation": "Explore Motia's capabilities through a collection of demonstration videos and tutorials.",
+        "key_points": [
+            "Real-world examples",
+            "Feature walkthroughs",
+            "Development workflows",
+            "AI framework",
+            "LinkedIn and Twitter Automation"
+        ],
+        "example": "Watch Motia in action with these curated video demonstrations",
+        "related_terms": [
+            "Video Demonstrations",
+            "Tutorials",
+            "Next.js Background Jobs",
+            "DX (Developer Experience)",
+            "AI Framework"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/video-showcase",
+        "search_name": "Video Showcase"
+    },
+    {
+        "title": "How to Contribute to Motia",
+        "explanation": "A guide for developers who want to contribute to the open-source project, Motia.",
+        "key_points": [
+            "Reporting Issues: Open an issue on GitHub with detailed information.",
+            "Submitting Pull Requests: Fork the repository, create a new branch, make modifications, write tests, and provide a clear description.",
+            "Documentation Improvements: Submit pull requests with necessary changes to the documentation source files.",
+            "Sharing Examples and Use Cases: Contribute examples to the Motia Examples repository.",
+            "Spreading the Word: Share Motia, star the GitHub repository, follow on Twitter, and join Discord."
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia",
+            "GitHub",
+            "Pull Request",
+            "Issue",
+            "Documentation",
+            "Examples",
+            "Discord"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/contribution",
+        "search_name": "How to Contribute"
+    },
+    {
+        "title": "Community Resources",
+        "explanation": "Join the Motia community for help, discussions, and resources related to Motia development.",
+        "key_points": [
+            "Discord Community: Real-time help, discussions, and community support",
+            "GitHub Issues: Bug reports, feature requests, technical issues",
+            "Main Repository: The heart of Motia development",
+            "Examples Repository: Learn from real-world implementations",
+            "Roadmap: Check out upcoming features, improvements, and community requests"
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia API",
+            "REST API tutorial",
+            "API documentation",
+            "Community guidelines",
+            "Ways to support Motia"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/community-resources",
+        "search_name": "Community Resources"
+    },
+    {
+        "title": "Motia API Reference",
+        "explanation": "Comprehensive documentation for Motia's TypeScript/JavaScript and Python APIs, including core types, interfaces, and utilities.",
+        "key_points": [
+            "API Reference provides complete documentation for Motia framework",
+            "Includes configuration for API Steps (HTTP endpoints), Event Steps (background tasks), Cron Steps (scheduled tasks), and NOOP Steps (visual connectors)",
+            "Context API offers event emission, structured logging, state management, real-time streams, and request tracing"
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia",
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "API",
+            "HTTP endpoints",
+            "background tasks",
+            "scheduled tasks",
+            "visual connectors",
+            "Context API",
+            "Event emission",
+            "Structured logging",
+            "State management",
+            "Real-time streams",
+            "Request tracing"
+        ],
+        "code_snippet": [
+            {
+                "interfaceApiRouteConfig": {
+                    "type": "'api'",
+                    "name": "string",
+                    "description": "string",
+                    "path": "string",
+                    "method": "'GET'|'POST'|'PUT'|'DELETE'|'PATCH'|'OPTIONS'|'HEAD'",
+                    "emits": "[Emit[]]",
+                    "virtualEmits": "Emit[]",
+                    "virtualSubscribes": "string[]",
+                    "flows": "'string[]'",
+                    "middleware": "[ApiMiddleware[]]",
+                    "bodySchema": "'ZodInput'",
+                    "responseSchema": "'Record<number,ZodInput>'",
+                    "queryParams": "[QueryParam[]]",
+                    "includeFiles": "string[]"
+                }
+            },
+            {
+                "interfaceEventConfig": {
+                    "type": "'event'",
+                    "name": "string",
+                    "description": "string",
+                    "subscribes": "string[]",
+                    "emits": "[Emit[]]",
+                    "virtualEmits": "Emit[]",
+                    "input": "'ZodInput'",
+                    "flows": "'string[]'",
+                    "includeFiles": "string[]"
+                }
+            },
+            {
+                "interfaceCronConfig": {
+                    "type": "'cron'",
+                    "name": "string",
+                    "description": "string",
+                    "cron": "string",
+                    "emits": "[Emit[]]",
+                    "virtualEmits": "Emit[]",
+                    "flows": "'string[]'",
+                    "includeFiles": "string[]"
+                }
+            },
+            {
+                "interfaceNoopConfig": {
+                    "type": "'noop'",
+                    "name": "string",
+                    "description": "string",
+                    "virtualEmits": "[Emit[]]",
+                    "virtualSubscribes": "string[]",
+                    "flows": "'string[]'"
+                }
+            },
+            {
+                "interfaceFlowContext": {
+                    "type": "<TEmitData=never>",
+                    "emit": "(event:EmitEvent<TEmitData>)=>Promise<void>",
+                    "logger": "Logger",
+                    "state": "StateManager",
+                    "streams": "StreamsManager",
+                    "traceId": "string"
+                }
+            },
+            {
+                "interfaceLogger": {
+                    "info": "(message:string,metadata?:Record<string,any>)=>void",
+                    "error": "(message:string,metadata?:Record<string,any>)=>void",
+                    "warn": "(message:string,metadata?:Record<string,any>)=>void",
+                    "debug": "(message:string,metadata?:Record<string,any>)=>void"
+                }
+            },
+            {
+                "interfaceStateManager": {
+                    "get": "<T>(groupId:string,key:string):Promise<T|null>",
+                    "set": "<T>(groupId:string,key:string,value:T):Promise<T>",
+                    "delete": "<T>(groupId:string,key:string):Promise<T|null>",
+                    "getGroup": "<T>(groupId:string):Promise<T[]>",
+                    "clear": "(groupId:string):Promise<void>"
+                }
+            },
+            {
+                "interfaceMotiaStream": {
+                    "get": "(groupId:string,id:string):Promise<BaseStreamItem<TData>|null>",
+                    "set": "(groupId:string,id:string,data:TData):Promise<BaseStreamItem<TData>>",
+                    "delete": "(groupId:string,id:string):Promise<BaseStreamItem<TData>|null>",
+                    "getGroup": "(groupId:string):Promise<BaseStreamItem<TData>[]>",
+                    "send": "<T>(channel:StateStreamEventChannel,event:StateStreamEvent<T>):Promise<void>"
+                }
+            }
+        ],
+        "original_source_url": "https://www.motia.dev/docs/api-reference#whats-next",
+        "search_name": "API Reference"
+    },
+    {
+        "title": "ERROR - State Management",
+        "explanation": "Could not generate valid JSON.",
+        "key_points": [],
+        "example": "",
+        "related_terms": [],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/state-management =====",
+        "search_name": "State Management"
+    },
+    {
+        "title": "Project Structure",
+        "explanation": "Learn about Motia's project structure, file organization, and automatic step discovery system for building scalable workflow applications.",
+        "key_points": [
+            "Understand the directory structure of a typical Motia project",
+            "Discover how Motia automatically discovers and registers steps",
+            "Follow naming conventions for workflow steps",
+            "Organize steps in sequential flow for linear workflows",
+            "Configure TypeScript/JavaScript projects for Node.js-based steps"
+        ],
+        "example": "01-api-start.step.ts, 02-validate-data_step.py, 03-process-payment.step.js",
+        "related_terms": [
+            "Motia",
+            "project structure",
+            "file organization",
+            "workflow application",
+            "automatic step discovery",
+            ".step",
+            "sequential flow"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/project-structure",
+        "search_name": "Project Structure"
+    },
+    {
+        "title": "Real-time Streams with Motia Streams",
+        "explanation": "Real-time Streams allow you to quickly push updates from your asynchronous workflows to the client without implementing polling processes. This guide demonstrates how to create and use a stream called 'openai' in a project using Motia Sockets.",
+        "key_points": [
+            "Define a stream by creating a file named open-ai.stream.ts under steps/ folder",
+            "The schema is used to define the type of the stream",
+            "Base config is used to configure the stream, with storageType set to 'default'",
+            "Once created, the stream should be immediately available in FlowContext",
+            "Create records using the streams API in your step"
+        ],
+        "example": "import { ApiRouteConfig, Handlers } from'motia'\nimport { z } from'zod'\n\nexport const config:ApiRouteConfig = {\n...\n}\n\nexport const handler:Handlers['OpenAiApi'] = async(req, {traceId,logger,emit,streams}) => {\n...\n}",
+        "related_terms": [
+            "Motia Sockets",
+            "Stream Config",
+            "FlowContext",
+            "API generated",
+            "OpenAI SDK"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/streams",
+        "search_name": "Real-time Streams"
+    },
+    {
+        "title": "Observability in Motia",
+        "explanation": "Learn about the logging and debugging system provided by Motia for real-time monitoring, error handling, and performance optimization.",
+        "key_points": [
+            "Real-time log streaming in terminal and Motia Workbench",
+            "Multiple log levels: info, debug, warn, error",
+            "Contextual information included with each log entry",
+            "Local development debugging tools",
+            "Integrated flow monitoring"
+        ],
+        "example": "```javascript\nexportconsthandler:Handlers['StepName']=async(input, {logger})=>{\n// Basic logging\nlogger.info('Starting process')\n// Logging with context\nlogger.info('Operation completed', {operationId: input.id,duration:1500})\n// Error handling\ntry {\nawaitriskyOperation()\n} catch (error) {\n logger.error('Operation failed', {error: error.message,stack: error.stack})\n}\n// Debug logging\nlogger.debug('Operation details', {rawInput: input,timestamp: Date.now()})\n// Warning logging\nif(input.amount>1000) {\n logger.warn('Large operation detected', {amount: input.amount,threshold:1000})\n}\n}\n```",
+        "related_terms": [
+            "logging",
+            "debugging",
+            "real-time monitoring",
+            "flow monitoring",
+            "contextual information"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/observability",
+        "search_name": "Observability"
+    },
+    {
+        "title": "Customizing Flows in Motia Workbench",
+        "explanation": "Learn how to create custom visualizations for your workflow Steps and represent external processes.",
+        "key_points": [
+            "Create a custom UI for a Step by creating a .tsx or .jsx file next to the Step file with the same base name",
+            "UI Steps provide a way to create custom visual representations of your workflow Steps in the Workbench flow visualization tool",
+            "Motia Workbench provides out-of-the-box components for different Step types",
+            "You can fully customize your node to look completely different",
+            "Available Components: EventNode, BaseHandle, Position"
+        ],
+        "example": "Overriding an EventNode while keeping the same look. We'll add an image and show the description.",
+        "related_terms": [
+            "Motia Workbench",
+            "Workflow Steps",
+            "Flow Visualization Tool",
+            "UI Steps",
+            "Custom Node"
+        ],
+        "code_snippet": [
+            "```jsx\nimport { EventNode, EventNodeProps } from 'motia/workbench'\nimport React from 'react'\n\nexport const Node: React.FC<EventNodeProps> = (props) => {\n return (<EventNode {...props}>\n <div className=\"flex flex-row items-start gap-2\">\n <div className=\"text-sm text-gray-400 font-mono\">{props.data.description}</div>\n <img style={{ width:'64px', height:'64px'}} src=\"https://www.motia.dev/icon.png/\"/>\n </div>\n</EventNode>)\n}\n",
+            "```"
+        ],
+        "original_source_url": "https://www.motia.dev/docs/development-guide/customizing-flows#ui-steps-1",
+        "search_name": "Customizing Flows"
+    },
+    {
+        "title": "Middleware",
+        "explanation": "Middleware is a function that runs before your API handler, allowing you to perform tasks such as authentication, logging, error handling, or any logic that applies to multiple endpoints.",
+        "key_points": [
+            "Middleware runs before the API handler",
+            "It receives three arguments: req, ctx, and next()",
+            "next() must be called to continue to the handler",
+            "Middleware runs in the order they are listed",
+            "You can modify responses by awaiting next(), then modifying the response"
+        ],
+        "example": [
+            "Import and use authMiddleware:",
+            "```javascript",
+            "import { ApiMiddleware } from 'motia';",
+            "const authMiddleware: ApiMiddleware = async (req, ctx, next) => {",
+            "  if (!req.headers.authorization) {",
+            "    return { status: 401, body: { error: 'Unauthorized' } }",
+            "  }",
+            "  return next();",
+            "};",
+            "export const config = {",
+            "  name: 'ProtectedEndpoint',",
+            "  type: 'api',",
+            "  path: '/protected',",
+            "  method: 'GET',",
+            "  middleware: [authMiddleware]",
+            "};",
+            "export const handler = async (req, ctx) => {",
+            "  return { status: 200, body: { message: 'Success' } };",
+            "};",
+            "```"
+        ],
+        "related_terms": [
+            "API handlers",
+            "Authentication",
+            "Logging",
+            "Error handling",
+            "Next() function"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/middleware#what-is-middleware",
+        "search_name": "Middleware"
+    },
+    {
+        "title": "Testing in Motia",
+        "explanation": "Learn how to write and run tests for your Motia components using Jest as the testing framework.",
+        "key_points": [
+            "Write tests for steps by creating a test file with the same name as the step file, but with a .test.ts or .test.js extension",
+            "Use the createTestContext function from @motiadev/testing to create a test context with mocked emit and done functions",
+            "Call the step's handler function with test input and the mocked context, then assert that the emit function was called with the expected event type and data",
+            "To test a flow, create a test file with the flow name and a .test.ts or .test.js extension",
+            "Use the createTestFlow function from @motiadev/testing to create a test flow with the specified steps"
+        ],
+        "example": null,
+        "related_terms": [
+            "@motiadev/testing",
+            "Jest",
+            "emit",
+            "done",
+            "handler",
+            "step",
+            "flow"
+        ],
+        "code_snippet": [
+            "```typescript\nimport { createTestContext } from '@motiadev/testing'\nimport { handler } from './my-step.step'\ndescribe('MyStep', () => {\n  it('should emit an event with the correct data', async() => {\n    const { emit, done } = createTestContext()\n    await handler({ name: 'John' }, { emit })\n    expect(emit).toHaveBeenCalledWith({type:'my-event',data: { greeting:'Hello, John!'},})\n    done()\n  })\n})",
+            "```typescript\nimport { createTestFlow } from '@motiadev/testing'\nimport { handler as stepAHandler } from './step-a.step'\nimport { handler as stepBHandler } from './step-b.step'\ndescribe('MyFlow', () => {\n  it('should execute steps in the correct order', async() => {\n    const flow = createTestFlow('my-flow').step('step-a', stepAHandler).step('step-b', stepBHandler)\n    const result = await flow.execute({ name: 'Alice' })\n    expect(result).toEqual({greeting:'Hello, Alice!',message:'Welcome to Motia!',})\n  })\n})"
+        ],
+        "original_source_url": "https://www.motia.dev/docs/development-guide/testing#best-practices",
+        "search_name": "Testing"
+    },
+    {
+        "title": "Environment Variables",
+        "explanation": "Store API keys and configuration safely using .env files in Motia apps.",
+        "key_points": [
+            "Securely store sensitive information such as API keys, database URLs, and other configuration outside code.",
+            "Easily use different settings for development and production.",
+            "Never commit .env files to git.",
+            "Use process.env or os.environ to access environment variables in TypeScript/JavaScript and Python respectively."
+        ],
+        "example": "In your .env file:\n```\nOPENAI_API_KEY=sk-your-api-key-here\nDATABASE_URL=postgresql://user:password@localhost:5432/myapp\n```",
+        "related_terms": [
+            "API keys",
+            ".env files",
+            "configuration",
+            "development",
+            "production",
+            "TypeScript",
+            "JavaScript",
+            "Python"
+        ],
+        "code_snippet": "[TypeScript/JavaScript example](https://www.motia.dev/docs/development-guide/environment-variables#using-environment-variables-in-steps)\n```\nexport const config = {\n  type: 'api',\n  name: 'chat-with-ai',\n  path: '/chat',\n  method: 'POST'\n}\nexport const handler = async(req, {logger}) => {\n  // Use environment variables with process.env\n  const apiKey = process.env.OPENAI_API_KEY\n  const webhookUrl = process.env.DISCORD_WEBHOOK_URL\n  if (!apiKey) {\n    return {\n      status: 400,\n      body: {\n        error: 'Missing API key'\n      }\n    }\n  }\n  logger.info('Using OpenAI API', {\n    hasKey: !!apiKey\n  })\n  // Your logic here...\n  return {\n    status: 200,\n    body: {\n      message: 'Success!'\n    }\n  }\n}\n",
+        "original_source_url": "https://www.motia.dev/docs/development-guide/environment-variables#important-security-tips",
+        "search_name": "Environment Variables"
+    },
+    {
+        "title": "Command Line Interface (CLI) for Motia",
+        "explanation": "Learn how to use the Motia CLI to manage your projects and workflows.",
+        "key_points": [
+            "Installation: Use npx motia followed by the desired command",
+            "create: Create a new Motia project",
+            "build: Build your project, generates zip files for each step and creates a configuration file",
+            "deploy: Deploy your built steps to the Motia deployment service",
+            "dev: Start the development server"
+        ],
+        "example": "motiaclouddeploy--api-key<your-api-key>--version-name1.2.3--environment-idenv-uuid",
+        "related_terms": [
+            "CLI",
+            "Motia",
+            "projects",
+            "workflows",
+            "API key"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/development-guide/cli#next-steps",
+        "search_name": "Command Line Interface (CLI)"
+    },
+    {
+        "title": "Getting Started",
+        "explanation": "Learn how to deploy your Motia project to production",
+        "key_points": [
+            "Deploy with Motia",
+            "Self-Hosted Deployment using motia-docker",
+            "Command Line Interface (CLI)"
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia project",
+            "production deployment",
+            "motia-docker",
+            "Command Line Interface (CLI)"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/getting-started",
+        "search_name": "Getting Started"
+    },
+    {
+        "title": "Self-Hosted Deployment",
+        "explanation": "Learn how to deploy your Motia project to production using the provided motia-docker image.",
+        "key_points": [
+            "Use the provided docker image as a base and customize it or use it as is.",
+            "Quick setup using npxmotia@latestdockersetup command.",
+            "Create a Dockerfile with required steps to install dependencies, move application files, expose ports, and run the application."
+        ],
+        "example": null,
+        "related_terms": [
+            "Docker",
+            "Motia Project",
+            "Production Deployment",
+            "Base Image"
+        ],
+        "code_snippet": {
+            "Dockerfile": [
+                "# NOTE: Some cloud providers will require you to specify the platform...",
+                "FROM motiadev/motia:latest",
+                "COPY package*.json ./",
+                "RUN npm ci --only=production",
+                "COPY .",
+                "EXPOSE 3000",
+                "CMD [\"npm\", \"run\", \"start\"]"
+            ],
+            ".dockerignore": [
+                "# Git.git.gitignore",
+                "# Python__pycache__/*.py[cod]*$py.class*.so.Pythonenv/venv/ENV/",
+                "# Nodenode_modules/npm-debug.logyarn-debug.logyarn-error.log",
+                "# IDE.vscode/.idea/*.swp*.swo",
+                "# Local development.env",
+                "# OS generated files.DS_Store.DS_Store?._*.Spotlight-V100.Trashesehthumbs.dbThumbs.db"
+            ]
+        },
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/self-hosted#motia-docker-resources",
+        "search_name": "Self-Hosted Deployment"
+    },
+    {
+        "title": "Motia Cloud Features",
+        "explanation": "Learn about the key features of Motia Cloud, an easy-to-use platform for deploying Motia Projects to a live environment.",
+        "key_points": [
+            "One-click deployment",
+            "Real-time deployment status updates",
+            "Zero downtime deployments",
+            "Instant rollbacks and roll up updates",
+            "Observability (logs visualization, tracing tool)"
+        ],
+        "example": "Deploy your Motia project to a live environment with one click.",
+        "related_terms": [
+            "Motia Project",
+            "Live Environment",
+            "Motia Cloud",
+            "Message Queues",
+            "Backwards compatibility issues"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/motia-cloud/features#learn-how-to-deploy",
+        "search_name": "Features"
+    },
+    {
+        "title": "Deploying to Motia Cloud",
+        "explanation": "Learn how to deploy your project to Motia Cloud using either the Command Line Interface (CLI) or the Web interface.",
+        "key_points": [
+            "Using the CLI: `motiaclouddeploy--api-key<api-key>--version-name<version>[options]`",
+            "Deploy with a specific version: `motiaclouddeploy--api-keyyour-api-key-here--version-name1.2.3`",
+            "Deploy to a specific environment with environment variables: `motiaclouddeploy--api-keyyour-api-key-here--env-file.env.production--environment-idenv-id`",
+            "Through the web interface, deploy from workbench to a live environment with one click.",
+            "Adding static files to the bundle: include them in step config as `includeFiles`, path should be relative to the step file."
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia Cloud",
+            "CLI",
+            "Web interface",
+            "API key",
+            "Environment variables",
+            "Static files",
+            "Step config"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/motia-cloud/deployment#troubleshooting-build-outputs",
+        "search_name": "Deployment"
+    },
+    {
+        "title": "Motia Cloud Architecture",
+        "explanation": "Overview of Motia Cloud, a serverless platform with specific limitations and guidelines.",
+        "key_points": [
+            "Serverless platform",
+            "Limited bundle sizes to 100MB (working on increasing to over 1GB)",
+            "Payload size on events should not exceed 4KB",
+            "Runtime timeouts: 15 minutes for Event and Cron Steps, 30 seconds for API Steps",
+            "Reserved environment variables due to AWS deployment"
+        ],
+        "example": null,
+        "related_terms": [
+            "Serverless",
+            "Bundle size",
+            "Payload size",
+            "Runtime timeout",
+            "Environment variable"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/motia-cloud/architecture#troubleshooting-build-outputs",
+        "search_name": "Architecture"
+    },
+    {
+        "title": "Motia Cloud FAQ",
+        "explanation": "Answers to frequently asked questions about Motia Cloud.",
+        "key_points": [
+            "Node.JS projects are fully supported on Motia Cloud, while Python projects have some limitations with external libraries like TensorFlow and Pytorch due to a 100MB bundle size.",
+            "When deploying for the first time, the project is immediately available. Subsequent deployments need manual promotion to go live.",
+            "To promote a deployment, click the 'Promote' button on the Motia Cloud web interface.",
+            "Deployments can be rolled back by clicking the rollback button in the Motia Cloud web interface.",
+            "Static or binary files can be added to the project by including them in the 'includeFiles' property in the step config."
+        ],
+        "example": null,
+        "related_terms": [
+            "Motia Cloud",
+            "Deployment",
+            "Promotion",
+            "Rollback",
+            "Include Files"
+        ],
+        "code_snippet": null,
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/motia-cloud/faq",
+        "search_name": "FAQ"
+    },
+    {
+        "title": "Continuous Deployment with Motia",
+        "explanation": "This guide explains how to create a continuous deployment pipeline for your Motia project using GitHub Actions.",
+        "key_points": [
+            "Deploy your project to Motia Cloud first.",
+            "Add the environment ID to your pipeline.",
+            "Create an API Key in Motia Cloud and add it as a secret to your repository.",
+            "Populate environment variables as secrets in your repository.",
+            "Use GitHub Actions to deploy your Motia project."
+        ],
+        "example": "Replace __FILL YOUR ENVIRONMENT ID HERE__ with your actual environment ID in the workflow file.",
+        "related_terms": [
+            "Continuous Integration",
+            "Motia Cloud",
+            "GitHub Actions",
+            "API Key",
+            "Environment Variables"
+        ],
+        "code_snippet": "[...]\n# Fill your environment ID here\nMOTIA_ENV_ID:__FILL YOUR ENVIRONMENT ID HERE__[...]",
+        "original_source_url": "https://www.motia.dev/docs/deployment-guide/motia-cloud/continuous-deployment#using-github-actions",
+        "search_name": "Continuous Deployment"
+    }
+]
