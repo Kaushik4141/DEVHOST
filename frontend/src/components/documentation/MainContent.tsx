@@ -193,9 +193,9 @@ return (
           <section id="installation" className="doc-section space-y-6">
             <div className="space-y-4">
               <h2 className="text-3xl font-bold text-white">Installation</h2>
-              <p className="text-slate-400 leading-relaxed">
-          </p>
-        </div>
+              <p className="text-slate-400 leading-relaxed"></p>
+            </div>
+          </section>
 
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-slate-200">Create your project</h3>
