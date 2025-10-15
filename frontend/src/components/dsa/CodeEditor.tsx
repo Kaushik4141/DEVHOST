@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Editor, { Monaco } from '@monaco-editor/react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/UI/button';
 import { Loader2 } from 'lucide-react';
 
 interface CodeEditorProps {
