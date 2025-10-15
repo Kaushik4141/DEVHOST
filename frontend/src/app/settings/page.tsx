@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { getUserProfile, updateUserProfile } from "@/libs/api";
