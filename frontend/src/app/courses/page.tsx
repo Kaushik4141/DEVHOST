@@ -1,6 +1,5 @@
 'use client';
 import CourseGrid from "@/components/convert/CourseGrid";
-import { useRouter } from "next/navigation";
 
 const sampleCourses = [
   {
@@ -36,18 +35,13 @@ const sampleCourses = [
 ];
 
 export default function CoursesPage() {
-  const router = useRouter();
-
-  const handleCourseClick = (courseId: number) => {
-    router.push('/documentation');
-  };
+  // Navigation is handled inside CourseCard via Link based on title
 
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-white">Our Courses</h1>
       <CourseGrid 
-        courses={sampleCourses} 
-        onCourseClick={handleCourseClick}
+        courses={sampleCourses}
       />
     </main>
   );
