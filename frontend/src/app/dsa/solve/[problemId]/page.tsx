@@ -1,5 +1,12 @@
 import SolveProblem from '@/components/dsa/SolveProblem';
 
-export default function Page({ params }: { params: { problemId: string } }) {
+type Props = {
+  params: {
+    problemId: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default function Page({ params }: Props) {
   return <SolveProblem problemId={params.problemId} />;
 }
