@@ -63,7 +63,8 @@ export const Div = styled(motion.div)`
 
 export const ParallaxImages = styled.div`
   position: relative;
-  max-width: 53.7rem;
+  max-width: 500rem;
   margin: 3rem auto 0;
-  width: 100%;
+  width: 1000x;
+  
 `;

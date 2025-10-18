@@ -22,5 +22,7 @@ const putProfile = [
     res.json(user);
   }),
 ];
-
-module.exports = { getProfile, putProfile };
+const alive = asyncHandler(async (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is alive!' });
+});
+module.exports = { getProfile, putProfile, alive };

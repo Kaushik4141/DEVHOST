@@ -4,9 +4,11 @@ import big_banner from '../../../../public/images/big_banner.png';
 import featured_mobile_banner from '../../../../public/images/featured_mobile_banner.png';
 import ParallaxText from '@/components/Common/ParallaxImages';
 import companies_image from '../../../../public/images/companies.png';
+import motia from '../../../../public/images/motia-removebg-preview.png';
 import { Wrapper, Inner, ImageContainer, ParallaxImages, Div } from './styles';
 import RevealCover from '@/components/Common/RevealCover';
 import { useIsMobile } from '../../../../libs/useIsMobile';
+import BrandPartners from './powered';
 
 export const imageVariants = {
   hidden: {
@@ -55,14 +57,9 @@ const Featured = () => {
             )}
           </Div>
         </ImageContainer>
+        <BrandPartners/>
 
-        <h2>Powered by</h2>
-
-        <ParallaxImages>
-          <ParallaxText baseVelocity={-4}>
-            <Image src={companies_image} alt="companies" />
-          </ParallaxText>
-        </ParallaxImages>
+        
       </Inner>
     </Wrapper>
   );
