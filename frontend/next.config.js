@@ -15,7 +15,7 @@ const nextConfig = {
   },
   
   // Completely disable file tracing to avoid permission errors
-  output: 'export',
+ 
   
   // Add other Next.js configuration options here
   reactStrictMode: true,

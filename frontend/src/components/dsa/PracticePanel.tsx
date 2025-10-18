@@ -9,9 +9,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/documenta
 
 interface PracticePanelProps {
   question: PracticeQuestion;
+  onComplete: () => void; 
 }
 
-export default function PracticePanel({ question }: PracticePanelProps) {
+export default function PracticePanel({ question, onComplete }: PracticePanelProps)  {
   const [isRunning, setIsRunning] = useState(false);
   const [executionResult, setExecutionResult] = useState<ExecutionResult | null>(null);
   const [activeTab, setActiveTab] = useState('visualizer');

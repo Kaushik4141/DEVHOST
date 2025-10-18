@@ -3,63 +3,49 @@ import { Body, LineMask } from './styles';
 import { useInView, motion } from 'framer-motion';
 import { useRef } from 'react';
 
-const MaskText = ({ phrases, tag }: { phrases: string[]; tag: string }) => {
+type MaskTextProps = {
+  phrases: string[];
+  tag?: keyof JSX.IntrinsicElements;
+  className?: string;
+  duration?: number;
+  delayStep?: number;
+};
+
+const MaskText = ({
+  phrases,
+  tag = 'p',
+  className,
+  duration = 1,
+  delayStep = 0.1,
+}: MaskTextProps) => {
   const animate = {
-    initial: {
-      y: '100%',
-    },
+    initial: { y: '100%' },
     open: (i: number) => ({
       y: '0%',
-      transition: { duration: 1, delay: 0.1 * i, ease: [0.33, 1, 0.68, 1] },
+      transition: { duration, delay: delayStep * i, ease: [0.33, 1, 0.68, 1] },
     }),
   };
-  const body = useRef(null);
+
+  const body = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(body, { once: true, margin: '-10%', amount: 0.4 });
+
+  const MotionTag = motion[tag as keyof typeof motion] as any;
+
   return (
     <Body ref={body}>
-      {phrases.map((phrase, index) => {
-        return (
-          <LineMask key={index}>
-            {tag === 'h1' ? (
-              <motion.h1
-                variants={animate}
-                initial="initial"
-                animate={isInView ? 'open' : ''}
-                custom={index}
-              >
-                {phrase}
-              </motion.h1>
-            ) : tag === 'h2' ? (
-              <motion.h2
-                variants={animate}
-                initial="initial"
-                animate={isInView ? 'open' : ''}
-                custom={index}
-              >
-                {phrase}
-              </motion.h2>
-            ) : tag === 'h3' ? (
-              <motion.h3
-                variants={animate}
-                initial="initial"
-                animate={isInView ? 'open' : ''}
-                custom={index}
-              >
-                {phrase}
-              </motion.h3>
-            ) : (
-              <motion.p
-                variants={animate}
-                initial="initial"
-                animate={isInView ? 'open' : ''}
-                custom={index}
-              >
-                {phrase}
-              </motion.p>
-            )}
-          </LineMask>
-        );
-      })}
+      {phrases.map((phrase, index) => (
+        <LineMask key={index}>
+          <MotionTag
+            className={className}
+            variants={animate}
+            initial="initial"
+            animate={isInView ? 'open' : ''}
+            custom={index}
+          >
+            {phrase}
+          </MotionTag>
+        </LineMask>
+      ))}
     </Body>
   );
 };

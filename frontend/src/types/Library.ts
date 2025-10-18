@@ -2,6 +2,7 @@
  * TypeScript interface for Library data from libraries.io API
  */
 export interface Library {
+  id: string;
   name: string;
   description: string;
   language: string;

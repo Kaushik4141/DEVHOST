@@ -190,7 +190,7 @@ export default function DSATopicPage() {
     const newCompleted = new Set(completedQuestions);
     newCompleted.add(questionId);
     setCompletedQuestions(newCompleted);
-    localStorage.setItem(`completed-${topicSlug}`, JSON.stringify([...newCompleted]));
+    localStorage.setItem(`completed-${topicSlug}`, JSON.stringify(Array.from(newCompleted)));
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -291,7 +291,7 @@ export default function DSATopicPage() {
                     <BookOpen className="w-6 h-6 text-blue-400" />
                   </div>
                   <span className="text-sm font-medium text-blue-400 bg-blue-500/20 px-3 py-1 rounded-full">
-                    {topic.category}
+{/* topic.category removed – property does not exist on DSATopic */}
                   </span>
                 </div>
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-3">
@@ -603,8 +603,9 @@ export default function DSATopicPage() {
                         
                         <div className="mt-8">
                           <PracticePanel 
-                            question={selectedQuestion} 
+                            question={selectedQuestion}
                             onComplete={() => markQuestionCompleted(selectedQuestion.id)}
+
                           />
                         </div>
                       </div>

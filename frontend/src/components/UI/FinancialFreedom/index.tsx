@@ -76,7 +76,7 @@ const FinancialFreedom = () => {
               <div className="content">
                 <MaskText 
                   phrases={[edge.point]} 
-                  tag="h3" 
+                  tag="h3"
                   className="text-2xl font-semibold mb-4"
                 />
                 <MaskText 
