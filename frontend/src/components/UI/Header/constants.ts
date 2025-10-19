@@ -23,7 +23,7 @@ export const menu = {
 export const links = [
   {
     url: '/community',
-    linkTo: 'Solutions',
+    linkTo: 'Community',
   },
   {
     url: '/courses',

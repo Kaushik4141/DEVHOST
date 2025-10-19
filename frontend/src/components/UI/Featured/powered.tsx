@@ -21,25 +21,45 @@ const BrandPartners: React.FC = () => {
     "https://innovatehubcec.vercel.app/lenis.gif", // GSAP
     "https://innovatehubcec.vercel.app/gsap.png" // Lenis
   ];
-
-  useEffect(() => {
+useEffect(() => {
   const wrapper = document.querySelector(".logos-wrapper") as HTMLElement;
   const container = document.querySelector(".logos-container") as HTMLElement;
+  if (!wrapper || !container) return;
 
-  if (wrapper && container) {
-    const clone = wrapper.cloneNode(true) as HTMLElement;
-    container.appendChild(clone);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting) {
+        // Run GSAP only when visible
+        const clone = wrapper.cloneNode(true) as HTMLElement;
+        container.appendChild(clone);
 
-    const totalWidth = wrapper.offsetWidth;
+        const totalWidth = wrapper.offsetWidth;
+        if (totalWidth === 0) return;
 
-    gsap.to(wrapper, {
-      x: `-${totalWidth}px`,
-      duration: 12,
-      ease: "none",
-      repeat: -1,
-    });
-  }
+        const tween = gsap.to(wrapper, {
+          x: `-${totalWidth}px`,
+          duration: 12,
+          ease: "none",
+          repeat: -1,
+        });
+
+        observer.disconnect();
+
+        // Cleanup when component unmounts
+        return () => {
+          tween.kill();
+          container.removeChild(clone);
+        };
+      }
+    },
+    { threshold: 0.2 } // 20% visible
+  );
+
+  observer.observe(container);
+  return () => observer.disconnect();
 }, []);
+
 
   return (
     <div className="brand-partners w-full h-[40vh] md:h-[65vh] flex flex-col items-center justify-center gap-[35px] md:gap-[55px]">

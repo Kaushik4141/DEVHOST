@@ -10,6 +10,7 @@ import RevealCover from '@/components/Common/RevealCover';
 import { useIsMobile } from '../../../../libs/useIsMobile';
 import BrandPartners from './powered';
 
+
 export const imageVariants = {
   hidden: {
     scale: 1.6,
@@ -57,7 +58,8 @@ const Featured = () => {
             )}
           </Div>
         </ImageContainer>
-        <BrandPartners/>
+      <BrandPartners />
+
 
         
       </Inner>
