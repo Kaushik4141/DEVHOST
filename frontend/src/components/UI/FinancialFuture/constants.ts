@@ -17,15 +17,15 @@ export const cardsInfo = [
 
 export const stats = [
   {
-    number: '50+',
-    subtitle: 'cities',
+    number: '3+',
+    subtitle: 'frameworks/libraries',
   },
   {
-    number: '50,000+',
-    subtitle: 'transactions',
+    number: '5+',
+    subtitle: 'DSA topics',
   },
   {
-    number: '3M+',
+    number: '3+',
     subtitle: 'users',
   },
   {
