@@ -41,8 +41,8 @@ const Featured = () => {
           >
             {isMobile ? (
               <Image
-                src={featured_mobile_banner}
-                alt="featured_mobile_banner"
+                src={big_banner}
+                alt="big_banner"
                 fill
                 sizes="(max-width: 768px) 100vw, 100vw"
                 priority

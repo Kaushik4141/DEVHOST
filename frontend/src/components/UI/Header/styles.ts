@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { styled } from 'styled-components';
 
 export const Wrapper = styled.section`
+  position: sticky;
+  top: 0;
+  z-index: 100;
   padding: 1rem 0;
   border-bottom: 0.5px solid #3d3d3d;
 

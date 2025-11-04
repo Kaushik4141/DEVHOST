@@ -21,19 +21,17 @@ export const desktopBriefNotePhrase = [
 // For mobile
 export const mobileHeaderPhrase = ['Your Learning', 'Flow, Your Way'];
 export const mobileParagraphPhrase = [
-  'We believe that mastering development should be',
-  "intuitive and personalized. That's why we offer",
-  ' you the freedom you deserve.',
+  'Interactive lessons,',
+  'AI Guidance, and',
+  'real-world projects, all in',
+  'one place.',
 ];
 
 export const mobileBriefNotePhrase = [
-  'Smart',
-  ' investments,',
-  'secure',
-  ' payments,',
-  'and expert',
-  'guidance, all',
-  'in one place.',
+  'Interactive lessons,',
+  'AI Guidance, and',
+  'real-world projects, all in',
+  'one place.',
 ];
 
 export const edges = [

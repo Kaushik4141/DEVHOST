@@ -29,7 +29,7 @@ const OffersSection = () => {
           <MaskText phrases={desktopHeaderPhrases} tag="h1" />
 
           {isMobile ? (
-            <MaskText phrases={mobileParagraphPhrase} tag="p" />
+            <MaskText phrases={desktopParagraphPhrase} tag="p" />
           ) : (
             <MaskText phrases={desktopParagraphPhrase} tag="p" />
           )}

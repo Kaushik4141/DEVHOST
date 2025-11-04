@@ -141,7 +141,7 @@ export default function DocumentationPage() {
         {/* Notes Button */}
         <button
           onClick={() => setNotesOpen(!notesOpen)}
-          className="fixed bottom-24 right-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all z-10 flex items-center justify-center"
+          className="fixed bottom-24 left-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all z-10 flex items-center justify-center"
           aria-label={notesOpen ? "Close Notes" : "Open Notes"}
         >
           {notesOpen ? <X className="w-5 h-5" /> : <StickyNote className="w-5 h-5" />}

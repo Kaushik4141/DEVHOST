@@ -24,8 +24,8 @@ const HeroSection = () => {
         <HeroTextContainer>
           {isMobile ? (
             <>
-              <MaskText phrases={mobilePhrases} tag="h1" />
-              <MaskText phrases={mobileParagraphPhrases} tag="p" />
+              <MaskText phrases={phrases} tag="h1" />
+              <MaskText phrases={paragraphPhrases} tag="p" />
             </>
           ) : (
             <>

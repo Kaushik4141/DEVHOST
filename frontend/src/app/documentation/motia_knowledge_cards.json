@@ -31,7 +31,7 @@
             "Start the development server with npm, pnpm, yarn or bun",
             "Run your first workflow using the pre-built basic tutorial flow"
         ],
-        "example": "npx npxmotia@latest create\nnpm dev",
+        "example": "npx motia@latest create\nnpm dev",
         "related_terms": [
             "Motia",
             "project creation",
